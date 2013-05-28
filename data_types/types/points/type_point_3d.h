@@ -52,24 +52,24 @@ namespace glext
     void y(const T &y);
 
     /*! \brief setter for z element
-     */
+    */
     void z(const T &z);
 
     /*! \brief setter for three elements x and y and z 
-     */
+    */
     void x_and_y_and_z(const T &x, const T &y, const T &z);
 
     /*! \brief getter for x element returns a reference to x of type T
      */
-    T& xref();
+    T& xref() const;
 
     /*! \brief getter for y element returns a reference to y of type T
      */
-    T& yref();
+    T& yref() const;
 
     /*! \brief getter for z element returns a reference to z of type T
      */
-    T& zref();
+    T& zref() const;
 
     /*! \brief getter for x element returns a copy of x of type T
      */

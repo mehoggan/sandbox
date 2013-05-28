@@ -56,13 +56,13 @@ namespace glext
 
   /// Getters
   template <typename T>
-  T& point_2d<T>::xref()
+  T& point_2d<T>::xref() const
   {
     return _x;
   }
 
   template <typename T>
-  T& point_2d<T>::yref()
+  T& point_2d<T>::yref() const
   {
     return _y;
   }

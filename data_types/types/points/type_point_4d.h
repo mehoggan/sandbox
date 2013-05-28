@@ -68,19 +68,19 @@ namespace glext
 
     /*! \brief getter for x element returns a reference to x of type T
      */
-    T& xref();
+    T& xref() const;
 
     /*! \brief getter for y element returns a reference to y of type T
      */
-    T& yref();
+    T& yref() const;
 
     /*! \brief getter for z element returns a reference to z of type T
      */
-    T& zref();
+    T& zref() const;
 
     /*! \brief getter for w element returns a reference to w of type T
      */
-    T& wref();
+    T& wref() const;
 
     /*! \brief getter for x element returns a copy of x of type T
      */
