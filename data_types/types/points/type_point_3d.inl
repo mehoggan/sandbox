@@ -66,19 +66,19 @@ namespace glext
 
   /// Getters
   template <typename T>
-  T& point_3d<T>::xref() const
+  T& point_3d<T>::xref()
   {
     return _x;
   }
 
   template <typename T>
-  T& point_3d<T>::yref() const
+  T& point_3d<T>::yref()
   {
     return _y;
   }
 
   template <typename T>
-  T& point_3d<T>::zref() const
+  T& point_3d<T>::zref()
   {
     return _z;
   }
@@ -106,9 +106,9 @@ namespace glext
   template <typename T>
   void swap(point_3d<T> &lhs, point_3d<T> &rhs)
   {
-    std::swap(lhs.x(), rhs.x());
-    std::swap(lhs.y(), rhs.y());
-    std::swap(lhs.z(), rhs.z());
+    std::swap(lhs.xref(), rhs.xref());
+    std::swap(lhs.yref(), rhs.yref());
+    std::swap(lhs.zref(), rhs.zref());
   }
 
   /// Comparison operators

@@ -76,25 +76,25 @@ namespace glext
 
   /// Getters
   template <typename T>
-  T& point_4d<T>::xref() const
+  T& point_4d<T>::xref()
   {
     return _x;
   }
 
   template <typename T>
-  T& point_4d<T>::yref() const
+  T& point_4d<T>::yref()
   {
     return _y;
   }
 
   template <typename T>
-  T& point_4d<T>::zref() const
+  T& point_4d<T>::zref()
   {
     return _z;
   }
 
   template <typename T>
-  T& point_4d<T>::wref() const
+  T& point_4d<T>::wref()
   {
     return _w;
   }

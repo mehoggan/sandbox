@@ -1,22 +1,27 @@
-#include <types/points/type_point_2d.h>
+#include <types/vectors/type_vector_2d.h>
+
+#include <iostream>
 #include <cassert>
 
 int main(int argc, char * argv[]) {
   // Constructor Tests
-  glext::point_2d<float> p1;
-  glext::point_2d<float> p2(1.0f, 2.0f);
+  glext::vector_2d<float> v1;
+  glext::vector_2d<float> v2(1.0f, 2.0f);
 
-  assert(p1 != p2);
-  assert(p1 < p2);
-  assert(p1 <= p2);
+  assert(v1 != v2);
+  assert(v1 < v2);
+  assert(v1 <= v2);
 
-  glext::point_2d<float> p3(p2);
-  assert(p3 == p2);
-  assert(p3 <= p2);
-  assert(p3 >= p1);
-  assert(p3 > p1);
+  glext::vector_2d<float> v3(v2);
+  assert(v3 == v2);
+  assert(v3 <= v2);
+  assert(v3 >= v1);
+  assert(v3 > v1);
 
-  p2 = p1;
-  assert(p2 != p3);
-  assert(p2 == p1);
+  v2 = v1;
+  assert(v2 != v3);
+  assert(v2 == v1);
+
+  glext::vector_2d<float> v4(1.0f, 1.0f);
+  std::cout << v4.magnitude() << std::endl;
 }
