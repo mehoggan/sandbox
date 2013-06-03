@@ -2,7 +2,7 @@
 #define POINT2D_H_INCLUDED
 
 #include <glext.h>
-#include <math/intrinsics.h>
+#include <math/sqrt.h>
 
 namespace glext 
 {

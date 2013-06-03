@@ -23,5 +23,5 @@ int main(int argc, char * argv[]) {
   assert(v2 == v1);
 
   glext::vector_2d<float> v4(1.0f, 1.0f);
-  std::cout << v4.magnitude() << std::endl;
+  v4.magnitude();
 }
