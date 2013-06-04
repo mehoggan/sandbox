@@ -87,6 +87,33 @@ namespace glext
     return sqrt(_x * _x + _y * _y);
   }
 
+  template <typename T> 
+  void vector_2d<T>::normalize() 
+  {
+    (*this) *= (T(1) / magnitude());
+  }
+
+  template <typename T> 
+  void vector_2d<T>::operator+=(const vector_2d<T> &rhs);
+  {
+    _x += rhs._x;
+    _y += rhs._y;
+  }
+
+  template <typename T> 
+  void vector_2d<T>::operator-=(const vector_2d<T> &rhs);
+  {
+    _x -= rhs._x;
+    _y -= rhs._y;
+  }
+
+  template <typename T> 
+  void vector_2d<T>::operator*=(const T &rhs);
+  {
+    _x *= rhs;
+    _y *= rhs;
+  }
+
   /// Copy and swap idiom
   template <typename T>
   void swap(vector_2d<T> &lhs, vector_2d<T> &rhs)
@@ -130,5 +157,30 @@ namespace glext
   bool operator!=(const vector_2d<T> &lhs, const vector_2d<T> &rhs)
   {
     return (lhs.x() != rhs.x() || lhs.y() != rhs.y());
+  }
+
+  /// Arithmetic operators
+  template <typename T>
+  vector_2d<T> operator+(const vector_2d<T> &v1, const vector_2d<T> &v2)
+  {
+    return vector_2d<T>(v1.x() + v2.x(), v1.y() + v2.y());
+  }
+
+  template <typename T>
+  vector_2d<T> operator-(const vector_2d<T> &v1, const vector_2d<T> &v2)
+  {
+    return vector_2d<T>(v1.x() - v2.x(), v1.y() - v2.y());
+  }
+
+  template <typename T>
+  vector_2d<T> operator-(const vector_2d<T> &v1)
+  {
+    return vector_2d<T>(T(-1) * v1.x(), T(-1) * v1.y());
+  }
+
+  template <typename T>
+  vector_2d<T> operator*(const T &s, const vector_2d<T> &v1)
+  {
+    return vector_2d<T>(s * v1.x(), s * v1.y());
   }
 }

@@ -86,11 +86,28 @@ namespace glext
     /*! \brief get the magnitude of a 3d vector
      */
     T magnitude() const;
+    
+    /*! \brief normalize the instace of this vector
+     */
+    void normalize();
+
+    /*! \brief add a vector to this vector
+     */
+    void operator+=(const vector_2d<T> &rhs);
+
+    /*! \brief subtract a vector from this vector
+     */
+    void operator-=(const vector_2d<T> &rhs);
+
+    /*! \brief scale this vector by a constant T
+     */
+    void operator*=(const T &rhs);
   };
 
   template <typename U>
   void swap(vector_3d<U> &lhs, vector_3d<U> &rhs);
-
+ 
+  /// Comparison/Relational operators
   template <typename T>
   bool operator<(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
 
@@ -108,6 +125,19 @@ namespace glext
 
   template <typename T>
   bool operator!=(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
+
+  /// Arithmetic operators
+  template <typename T>
+  vector_3d<T> operator+(const vector_3d<T> &v1, const vector_3d<T> &v3);
+
+  template <typename T>
+  vector_3d<T> operator-(const vector_3d<T> &v1, const vector_3d<T> &v3);
+
+  template <typename T>
+  vector_3d<T> operator-(const vector_3d<T> &v1);
+
+  template <typename T>
+  vector_3d<T> operator*(const T &s, const vector_3d<T> &v1);
 }
 #include "type_vector_3d.inl"
 #endif

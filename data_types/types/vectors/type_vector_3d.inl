@@ -109,6 +109,36 @@ namespace glext
     return sqrt(_x * _x + _y * _y + _z * _z);
   }
 
+  template <typename T> 
+  void vector_3d<T>::normalize() 
+  {
+    (*this) *= (T(1) / magnitude());
+  }
+
+  template <typename T> 
+  void vector_3d<T>::operator+=(const vector_3d<T> &rhs);
+  {
+    _x += rhs._x;
+    _y += rhs._y;
+    _z += rhs._z;
+  }
+
+  template <typename T> 
+  void vector_3d<T>::operator-=(const vector_3d<T> &rhs);
+  {
+    _x -= rhs._x;
+    _y -= rhs._y;
+    _z -= rhs._z;
+  }
+
+  template <typename T> 
+  void vector_3d<T>::operator*=(const T &rhs);
+  {
+    _x *= rhs;
+    _y *= rhs;
+    _z *= rhs;
+  }
+
   /// Copy and swap idiom
   template <typename T>
   void swap(vector_3d<T> &lhs, vector_3d<T> &rhs)

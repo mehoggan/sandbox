@@ -101,9 +101,42 @@ namespace glext
 
   /// Internal math algorithms 
   template <typename T> 
-  T vector_3d<T>::magnitude() const
+  T vector_4d<T>::magnitude() const
   {
     return sqrt(_x * _x + _y * _y + _z * _z + _w * _w);
+  }
+  
+  template <typename T> 
+  void vector_4d<T>::normalize() 
+  {
+    (*this) *= (T(1) / magnitude());
+  }
+
+  template <typename T> 
+  void vector_4d<T>::operator+=(const vector_4d<T> &rhs);
+  {
+    _x += rhs._x;
+    _y += rhs._y;
+    _z += rhs._z;
+    _w += rhs._w;
+  }
+
+  template <typename T> 
+  void vector_4d<T>::operator-=(const vector_4d<T> &rhs);
+  {
+    _x -= rhs._x;
+    _y -= rhs._y;
+    _z -= rhs._z;
+    _w += rhs._w;
+  }
+
+  template <typename T> 
+  void vector_4d<T>::operator*=(const T &rhs);
+  {
+    _x *= rhs;
+    _y *= rhs;
+    _z *= rhs;
+    _w *= rhs;
   }
 
   /// Getters
