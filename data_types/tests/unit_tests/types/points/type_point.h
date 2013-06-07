@@ -35,10 +35,6 @@ public:
 
     /// Test getters by reference
     glext::point_2d<float> p5;
-    float p5x = p5.xref();
-    p5x = 4; 
-    float p5y = p5.yref();
-    p5y = 10;
     TS_ASSERT(p5 == glext::point_2d<float>(0.0f, 0.0f)); 
 
     /// Test getters by value

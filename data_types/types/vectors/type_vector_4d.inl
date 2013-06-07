@@ -2,7 +2,7 @@ namespace glext
 {
   /// Constructors
   template <typename T>
-  vector_4d<T>::vector_4d()
+  vector_4d<T>::vector_4d() :
     _x(0),
     _y(0),
     _z(0),
@@ -109,11 +109,19 @@ namespace glext
   template <typename T> 
   void vector_4d<T>::normalize() 
   {
-    (*this) *= (T(1) / magnitude());
+    if (magnitude()) {
+      (*this) *= (T(1) / magnitude());
+    }
+  }
+
+  template <typename T>
+  T vector_4d<T>::dot(const vector_4d<T> &rhs)
+  {
+    return (_x * rhs._x + _y * rhs._y + _z * rhs._z + _w * rhs._w);
   }
 
   template <typename T> 
-  void vector_4d<T>::operator+=(const vector_4d<T> &rhs);
+  void vector_4d<T>::operator+=(const vector_4d<T> &rhs)
   {
     _x += rhs._x;
     _y += rhs._y;
@@ -122,7 +130,7 @@ namespace glext
   }
 
   template <typename T> 
-  void vector_4d<T>::operator-=(const vector_4d<T> &rhs);
+  void vector_4d<T>::operator-=(const vector_4d<T> &rhs)
   {
     _x -= rhs._x;
     _y -= rhs._y;
@@ -131,7 +139,7 @@ namespace glext
   }
 
   template <typename T> 
-  void vector_4d<T>::operator*=(const T &rhs);
+  void vector_4d<T>::operator*=(const T &rhs)
   {
     _x *= rhs;
     _y *= rhs;
@@ -215,5 +223,33 @@ namespace glext
   {
     return (lhs.x() != rhs.x() || lhs.y() != rhs.y() || lhs.z() != rhs.z() ||
       lhs.w() == rhs.w());
+  }
+
+  /// Arithmetic operators
+  template <typename T>
+  vector_4d<T> operator+(const vector_4d<T> &v1, const vector_4d<T> &v2)
+  {
+    return vector_4d<T>(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z(),
+      v1.w() + v2.w());
+  }
+
+  template <typename T>
+  vector_4d<T> operator-(const vector_4d<T> &v1, const vector_4d<T> &v2)
+  {
+    return vector_4d<T>(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z(),
+      v1.w() - v2.w());
+  }
+
+  template <typename T>
+  vector_4d<T> operator-(const vector_4d<T> &v1)
+  {
+    return vector_4d<T>(T(-1) * v1.x(), T(-1) * v1.y(), T(-1) * v1.z(),
+      T(-1) * v1.w());
+  }
+
+  template <typename T>
+  vector_4d<T> operator*(const T &s, const vector_4d<T> &v1)
+  {
+    return vector_4d<T>(s * v1.x(), s * v1.y(), s * v1.z(), s * v1.w());
   }
 }

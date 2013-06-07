@@ -1,5 +1,5 @@
-#ifndef POINT2D_H_INCLUDED
-#define POINT2D_H_INCLUDED
+#ifndef POINT3D_H_INCLUDED
+#define POINT3D_H_INCLUDED
 
 #include <glext.h>
 #include <math/sqrt.h>
@@ -91,13 +91,21 @@ namespace glext
      */
     void normalize();
 
+    /*! \brief dot prodcuct between this vector and another
+     */
+    T dot(const vector_3d &rhs);
+
+    /*! \brief cross product between this vector and another
+     */
+    vector_3d cross(const vector_3d &rhs);
+
     /*! \brief add a vector to this vector
      */
-    void operator+=(const vector_2d<T> &rhs);
+    void operator+=(const vector_3d<T> &rhs);
 
     /*! \brief subtract a vector from this vector
      */
-    void operator-=(const vector_2d<T> &rhs);
+    void operator-=(const vector_3d<T> &rhs);
 
     /*! \brief scale this vector by a constant T
      */

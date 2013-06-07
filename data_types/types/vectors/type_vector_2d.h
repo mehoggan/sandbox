@@ -76,6 +76,10 @@ namespace glext
      */
     void normalize();
 
+    /*! \brief dot prodcuct between this vector and another
+     */
+    T dot(const vector_2d &rhs);
+
     /*! \brief add a vector to this vector
      */
     void operator+=(const vector_2d<T> &rhs);

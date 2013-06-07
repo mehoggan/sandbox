@@ -2,7 +2,7 @@ namespace glext
 {
   /// Constructors
   template <typename T>
-  vector_3d<T>::vector_3d()
+  vector_3d<T>::vector_3d() :
     _x(0),
     _y(0),
     _z(0)
@@ -112,11 +112,28 @@ namespace glext
   template <typename T> 
   void vector_3d<T>::normalize() 
   {
-    (*this) *= (T(1) / magnitude());
+    if (magnitude()) {
+      (*this) *= (T(1) / magnitude());
+    }
+  }
+
+  template <typename T>
+  T vector_3d<T>::dot(const vector_3d<T> &rhs)
+  {
+    return (_x * rhs._x + _y * rhs._y + _z * rhs._z);
   }
 
   template <typename T> 
-  void vector_3d<T>::operator+=(const vector_3d<T> &rhs);
+  vector_3d<T> vector_3d<T>::cross(const vector_3d &rhs)
+  {
+    return vector_3d<T>(
+      _y * rhs._z - _z * rhs._y,
+      _z * rhs._x - _x * rhs._z,
+      _x * rhs._y - _y * rhs._x);
+  }
+
+  template <typename T> 
+  void vector_3d<T>::operator+=(const vector_3d<T> &rhs)
   {
     _x += rhs._x;
     _y += rhs._y;
@@ -124,7 +141,7 @@ namespace glext
   }
 
   template <typename T> 
-  void vector_3d<T>::operator-=(const vector_3d<T> &rhs);
+  void vector_3d<T>::operator-=(const vector_3d<T> &rhs)
   {
     _x -= rhs._x;
     _y -= rhs._y;
@@ -132,7 +149,7 @@ namespace glext
   }
 
   template <typename T> 
-  void vector_3d<T>::operator*=(const T &rhs);
+  void vector_3d<T>::operator*=(const T &rhs)
   {
     _x *= rhs;
     _y *= rhs;
@@ -183,5 +200,30 @@ namespace glext
   bool operator!=(const vector_3d<T> &lhs, const vector_3d<T> &rhs)
   {
     return (lhs.x() != rhs.x() || lhs.y() != rhs.y() || lhs.z() != rhs.z());
+  }
+
+  /// Arithmetic operators
+  template <typename T>
+  vector_3d<T> operator+(const vector_3d<T> &v1, const vector_3d<T> &v2)
+  {
+    return vector_3d<T>(v1.x() + v2.x(), v1.y() + v2.y(), v1.z() + v2.z());
+  }
+
+  template <typename T>
+  vector_3d<T> operator-(const vector_3d<T> &v1, const vector_3d<T> &v2)
+  {
+    return vector_3d<T>(v1.x() - v2.x(), v1.y() - v2.y(), v1.z() - v2.z());
+  }
+
+  template <typename T>
+  vector_3d<T> operator-(const vector_3d<T> &v1)
+  {
+    return vector_3d<T>(T(-1) * v1.x(), T(-1) * v1.y(), T(-1) * v1.z());
+  }
+
+  template <typename T>
+  vector_3d<T> operator*(const T &s, const vector_3d<T> &v1)
+  {
+    return vector_3d<T>(s * v1.x(), s * v1.y(), s * v1.z());
   }
 }

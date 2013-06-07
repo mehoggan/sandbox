@@ -90,25 +90,33 @@ namespace glext
   template <typename T> 
   void vector_2d<T>::normalize() 
   {
-    (*this) *= (T(1) / magnitude());
+    if (magnitude()) {
+      (*this) *= (T(1) / magnitude());
+    }
+  }
+
+  template <typename T>
+  T vector_2d<T>::dot(const vector_2d<T> &rhs)
+  {
+    return (_x * rhs._x + _y * rhs._y);
   }
 
   template <typename T> 
-  void vector_2d<T>::operator+=(const vector_2d<T> &rhs);
+  void vector_2d<T>::operator+=(const vector_2d<T> &rhs)
   {
     _x += rhs._x;
     _y += rhs._y;
   }
 
   template <typename T> 
-  void vector_2d<T>::operator-=(const vector_2d<T> &rhs);
+  void vector_2d<T>::operator-=(const vector_2d<T> &rhs)
   {
     _x -= rhs._x;
     _y -= rhs._y;
   }
 
   template <typename T> 
-  void vector_2d<T>::operator*=(const T &rhs);
+  void vector_2d<T>::operator*=(const T &rhs)
   {
     _x *= rhs;
     _y *= rhs;
