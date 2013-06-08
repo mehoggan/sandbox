@@ -8,4 +8,6 @@
 #include <cstdio>
 #include <limits>
 
+#define GLEXT_NON_USED_VAR(x) (void)(x)
+
 #endif

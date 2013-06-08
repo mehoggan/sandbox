@@ -1,8 +1,7 @@
-#ifndef POINT2D_H_INCLUDED
-#define POINT2D_H_INCLUDED
+#ifndef POINT3D_H_INCLUDED
+#define POINT3D_H_INCLUDED
 
 #include <glext.h>
-#include <types/type_point_2d.h>
 
 namespace glext 
 {

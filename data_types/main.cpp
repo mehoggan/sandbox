@@ -1,5 +1,7 @@
 #include <types/vectors/type_vector_2d.h>
 #include <types/vectors/type_vector_3d.h>
+#include <types/points/type_point_2d.h>
+#include <types/points/type_point_3d.h>
 #include <math/vector.h>
 
 #include <iostream>
@@ -8,6 +10,8 @@
 int main() {
   typedef glext::vector_2d<float> vec2;
   typedef glext::vector_3d<float> vec3;
+  typedef glext::point_2d<float> point2;
+  typedef glext::point_3d<float> point3;
 
   // Constructor Tests
   vec2 v1;
@@ -31,12 +35,18 @@ int main() {
   vec2 v5(0.0f, 1.0f);
 
   float theta = glext::angle_between(v4, v5);
-  std::cout << "theta is " << theta << std::endl;
+  GLEXT_NON_USED_VAR(theta);
 
   vec3 v6(1.0f, 0.0f, 0.0f);
   vec3 v7(0.0f, 1.0f, 0.0f);
   vec3 v8 = v6.cross(v7);
 
-  std::cout << "<" << v8.x() << ", " << v8.y() << ", " << v8.z() << ">" << 
-    std::endl;
+
+  v6 = -v6;
+  assert(v6.x() == -1.0 && v6.y() == -0.0 && v6.z() == -0.0);
+
+  point2 p1(1.0, 1.0); 
+  point2 p2(2.0, 2.0); 
+  vec2 v9(p2 - p1);
+  std::cout << "<" << v9.x() << ", " << v9.y() << ">" << std::endl;
 }

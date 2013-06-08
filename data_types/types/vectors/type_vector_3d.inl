@@ -37,6 +37,19 @@ namespace glext
     return (*this);
   }
 
+  /// Sub-index operator
+  template <typename T>
+  T &vector_3d<T>::operator[] (unsigned short index) {
+    assert(index < 3);
+
+    switch(index) 
+    {
+      case(0): return _x;
+      case(1): return _y;
+      case(2): return _z;
+    }
+  }
+
   /// Setters
   template <typename T>
   void vector_3d<T>::x(const T &x)
@@ -118,13 +131,13 @@ namespace glext
   }
 
   template <typename T>
-  T vector_3d<T>::dot(const vector_3d<T> &rhs)
+  T vector_3d<T>::dot(const vector_3d<T> &rhs) const
   {
     return (_x * rhs._x + _y * rhs._y + _z * rhs._z);
   }
 
   template <typename T> 
-  vector_3d<T> vector_3d<T>::cross(const vector_3d &rhs)
+  vector_3d<T> vector_3d<T>::cross(const vector_3d &rhs) const
   {
     return vector_3d<T>(
       _y * rhs._z - _z * rhs._y,

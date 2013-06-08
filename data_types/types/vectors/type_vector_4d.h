@@ -1,8 +1,10 @@
-#ifndef POINT4D_H_INCLUDED
-#define POINT4D_H_INCLUDED
+#ifndef VECTOR4D_H_INCLUDED
+#define VECTOR4D_H_INCLUDED
 
 #include <glext.h>
 #include <math/sqrt.h>
+
+#include <cassert>
 
 namespace glext 
 {
@@ -45,6 +47,10 @@ namespace glext
     /*! \brief assignment uses copy-swap idiom 
      */ 
     vector_4d &operator=(vector_4d rhs);
+
+    /*! \brief index operator wich allows you to change internal data
+     */
+    T &operator[] (unsigned short index);
 
     /*! \brief setter for x element
      */ 
@@ -108,7 +114,7 @@ namespace glext
 
     /*! \brief dot prodcuct between this vector and another
      */
-    T dot(const vector_4d &rhs);
+    T dot(const vector_4d &rhs) const;
 
     /*! \brief add a vector to this vector
      */

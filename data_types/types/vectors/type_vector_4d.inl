@@ -40,6 +40,20 @@ namespace glext
     return (*this);
   }
 
+  /// Sub-index operator
+  template <typename T>
+  T &vector_4d<T>::operator[] (unsigned short index) {
+    assert(index < 4);
+
+    switch(index) 
+    {
+      case(0): return _x;
+      case(1): return _y;
+      case(2): return _z;
+      case(3): return _w;
+    }
+  }
+
   /// Setters
   template <typename T>
   void vector_4d<T>::x(const T &x)
@@ -115,7 +129,7 @@ namespace glext
   }
 
   template <typename T>
-  T vector_4d<T>::dot(const vector_4d<T> &rhs)
+  T vector_4d<T>::dot(const vector_4d<T> &rhs) const
   {
     return (_x * rhs._x + _y * rhs._y + _z * rhs._z + _w * rhs._w);
   }

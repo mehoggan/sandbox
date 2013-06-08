@@ -34,6 +34,18 @@ namespace glext
     return (*this);
   }
 
+  /// Sub-index operator
+  template <typename T>
+  T &vector_2d<T>::operator[] (unsigned short index) {
+    assert(index < 2);
+
+    switch(index) 
+    {
+      case(0): return _x;
+      case(1): return _y;
+    }
+  }
+
   /// Setters
   template <typename T>
   void vector_2d<T>::x(const T &x)
@@ -96,7 +108,7 @@ namespace glext
   }
 
   template <typename T>
-  T vector_2d<T>::dot(const vector_2d<T> &rhs)
+  T vector_2d<T>::dot(const vector_2d<T> &rhs) const
   {
     return (_x * rhs._x + _y * rhs._y);
   }

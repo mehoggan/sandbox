@@ -2,7 +2,7 @@ namespace glext
 {
   /// Constructors
   template <typename T>
-  point_4d<T>::point_4d()
+  point_4d<T>::point_4d() :
     _x(0),
     _y(0),
     _z(0),

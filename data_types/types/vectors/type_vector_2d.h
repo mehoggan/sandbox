@@ -1,8 +1,10 @@
-#ifndef POINT2D_H_INCLUDED
-#define POINT2D_H_INCLUDED
+#ifndef VECTOR2D_H_INCLUDED
+#define VECTOR2D_H_INCLUDED
 
 #include <glext.h>
 #include <math/sqrt.h>
+
+#include <cassert>
 
 namespace glext 
 {
@@ -39,6 +41,10 @@ namespace glext
     /*! \brief assignment uses copy-swap idiom 
      */ 
     vector_2d &operator=(vector_2d rhs);
+
+    /*! \brief index operator wich allows you to change internal data
+     */
+    T &operator[] (unsigned short index);
 
     /*! \brief setter for x element
      */ 
@@ -78,7 +84,7 @@ namespace glext
 
     /*! \brief dot prodcuct between this vector and another
      */
-    T dot(const vector_2d &rhs);
+    T dot(const vector_2d &rhs) const;
 
     /*! \brief add a vector to this vector
      */

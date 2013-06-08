@@ -1,8 +1,10 @@
-#ifndef POINT3D_H_INCLUDED
-#define POINT3D_H_INCLUDED
+#ifndef VECTOR3D_H_INCLUDED
+#define VECTOR3D_H_INCLUDED
 
 #include <glext.h>
 #include <math/sqrt.h>
+
+#include <cassert>
 
 namespace glext 
 {
@@ -42,6 +44,10 @@ namespace glext
     /*! \brief assignment uses copy-swap idiom 
      */ 
     vector_3d &operator=(vector_3d rhs);
+
+    /*! \brief index operator wich allows you to change internal data
+     */
+    T &operator[] (unsigned short index);
 
     /*! \brief setter for x element
      */ 
@@ -93,11 +99,11 @@ namespace glext
 
     /*! \brief dot prodcuct between this vector and another
      */
-    T dot(const vector_3d &rhs);
+    T dot(const vector_3d &rhs) const;
 
     /*! \brief cross product between this vector and another
      */
-    vector_3d cross(const vector_3d &rhs);
+    vector_3d cross(const vector_3d &rhs) const;
 
     /*! \brief add a vector to this vector
      */
