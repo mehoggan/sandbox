@@ -118,11 +118,11 @@ namespace glext
 
     /*! \brief add a vector to this vector
      */
-    void operator+=(const vector_4d<T> &rhs);
+    void operator+=(const vector_4d &rhs);
 
     /*! \brief subtract a vector from this vector
      */
-    void operator-=(const vector_4d<T> &rhs);
+    void operator-=(const vector_4d &rhs);
 
     /*! \brief scale this vector by a constant T
      */
@@ -131,38 +131,6 @@ namespace glext
 
   template <typename U>
   void swap(vector_4d<U> &lhs, vector_4d<U> &rhs);
-
-  /// Comparison/Relational operators
-  template <typename T>
-  bool operator<(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  template <typename T>
-  bool operator>(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  template <typename T>
-  bool operator<=(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  template <typename T>
-  bool operator>=(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  template <typename T>
-  bool operator==(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  template <typename T>
-  bool operator!=(const vector_4d<T> &lhs, const vector_4d<T> &rhs);
-
-  /// Arithmetic operators
-  template <typename T>
-  vector_4d<T> operator+(const vector_4d<T> &v1, const vector_4d<T> &v4);
-
-  template <typename T>
-  vector_4d<T> operator-(const vector_4d<T> &v1, const vector_4d<T> &v4);
-
-  template <typename T>
-  vector_4d<T> operator-(const vector_4d<T> &v1);
-
-  template <typename T>
-  vector_4d<T> operator*(const T &s, const vector_4d<T> &v1);
 }
 #include "type_vector_4d.inl"
 #endif

@@ -7,7 +7,8 @@
 #include <climits>
 #include <cstdio>
 #include <limits>
+#include <iostream>
 
-#define GLEXT_NON_USED_VAR(x) (void)(x)
+#define GLEXT_UNUSED_VAR(x) (void)(x)
 
 #endif

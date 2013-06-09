@@ -107,11 +107,11 @@ namespace glext
 
     /*! \brief add a vector to this vector
      */
-    void operator+=(const vector_3d<T> &rhs);
+    void operator+=(const vector_3d &rhs);
 
     /*! \brief subtract a vector from this vector
      */
-    void operator-=(const vector_3d<T> &rhs);
+    void operator-=(const vector_3d &rhs);
 
     /*! \brief scale this vector by a constant T
      */
@@ -120,38 +120,6 @@ namespace glext
 
   template <typename U>
   void swap(vector_3d<U> &lhs, vector_3d<U> &rhs);
- 
-  /// Comparison/Relational operators
-  template <typename T>
-  bool operator<(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  template <typename T>
-  bool operator>(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  template <typename T>
-  bool operator<=(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  template <typename T>
-  bool operator>=(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  template <typename T>
-  bool operator==(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  template <typename T>
-  bool operator!=(const vector_3d<T> &lhs, const vector_3d<T> &rhs);
-
-  /// Arithmetic operators
-  template <typename T>
-  vector_3d<T> operator+(const vector_3d<T> &v1, const vector_3d<T> &v3);
-
-  template <typename T>
-  vector_3d<T> operator-(const vector_3d<T> &v1, const vector_3d<T> &v3);
-
-  template <typename T>
-  vector_3d<T> operator-(const vector_3d<T> &v1);
-
-  template <typename T>
-  vector_3d<T> operator*(const T &s, const vector_3d<T> &v1);
 }
 #include "type_vector_3d.inl"
 #endif

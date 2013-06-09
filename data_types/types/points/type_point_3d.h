@@ -85,24 +85,6 @@ namespace glext
 
   template <typename U>
   void swap(point_3d<U> &lhs, point_3d<U> &rhs);
-
-  template <typename T>
-  bool operator<(const point_3d<T> &lhs, const point_3d<T> &rhs);
-
-  template <typename T>
-  bool operator>(const point_3d<T> &lhs, const point_3d<T> &rhs);
-
-  template <typename T>
-  bool operator<=(const point_3d<T> &lhs, const point_3d<T> &rhs);
-
-  template <typename T>
-  bool operator>=(const point_3d<T> &lhs, const point_3d<T> &rhs);
-
-  template <typename T>
-  bool operator==(const point_3d<T> &lhs, const point_3d<T> &rhs);
-
-  template <typename T>
-  bool operator!=(const point_3d<T> &lhs, const point_3d<T> &rhs);
 }
 #include "type_point_3d.inl"
 #endif

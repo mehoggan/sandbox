@@ -147,4 +147,11 @@ namespace glext
   {
     return (lhs.x() != rhs.x() || lhs.y() != rhs.y() || lhs.z() != rhs.z());
   }
+
+  /// Output operators
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const point_3d<T> &rhs)
+  {
+    return out << "(" << rhs.x() << ", " << rhs.y() << ", " << rhs.z() << ")";
+  }
 }

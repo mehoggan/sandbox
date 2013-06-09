@@ -70,24 +70,6 @@ namespace glext
 
   template <typename U>
   void swap(point_2d<U> &lhs, point_2d<U> &rhs);
-
-  template <typename T>
-  bool operator<(const point_2d<T> &lhs, const point_2d<T> &rhs);
-
-  template <typename T>
-  bool operator>(const point_2d<T> &lhs, const point_2d<T> &rhs);
-
-  template <typename T>
-  bool operator<=(const point_2d<T> &lhs, const point_2d<T> &rhs);
-
-  template <typename T>
-  bool operator>=(const point_2d<T> &lhs, const point_2d<T> &rhs);
-
-  template <typename T>
-  bool operator==(const point_2d<T> &lhs, const point_2d<T> &rhs);
-
-  template <typename T>
-  bool operator!=(const point_2d<T> &lhs, const point_2d<T> &rhs);
 }
 #include "type_point_2d.inl"
 #endif

@@ -100,24 +100,6 @@ namespace glext
 
   template <typename U>
   void swap(point_4d<U> &lhs, point_4d<U> &rhs);
-
-  template <typename T>
-  bool operator<(const point_4d<T> &lhs, const point_4d<T> &rhs);
-
-  template <typename T>
-  bool operator>(const point_4d<T> &lhs, const point_4d<T> &rhs);
-
-  template <typename T>
-  bool operator<=(const point_4d<T> &lhs, const point_4d<T> &rhs);
-
-  template <typename T>
-  bool operator>=(const point_4d<T> &lhs, const point_4d<T> &rhs);
-
-  template <typename T>
-  bool operator==(const point_4d<T> &lhs, const point_4d<T> &rhs);
-
-  template <typename T>
-  bool operator!=(const point_4d<T> &lhs, const point_4d<T> &rhs);
 }
 #include "type_point_4d.inl"
 #endif

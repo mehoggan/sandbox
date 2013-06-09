@@ -36,13 +36,14 @@ namespace glext
 
   /// Sub-index operator
   template <typename T>
-  T &vector_2d<T>::operator[] (unsigned short index) {
+  T &vector_2d<T>::operator[](unsigned short index) {
     assert(index < 2);
 
     switch(index) 
     {
       case(0): return _x;
       case(1): return _y;
+      default: return _x;
     }
   }
 
@@ -202,5 +203,12 @@ namespace glext
   vector_2d<T> operator*(const T &s, const vector_2d<T> &v1)
   {
     return vector_2d<T>(s * v1.x(), s * v1.y());
+  }
+
+  /// Output operators
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const vector_2d<T> &rhs)
+  {
+    return out << "(" << rhs.x() << ", " << rhs.y() << ")";
   }
 }

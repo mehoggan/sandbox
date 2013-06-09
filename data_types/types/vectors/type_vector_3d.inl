@@ -39,7 +39,8 @@ namespace glext
 
   /// Sub-index operator
   template <typename T>
-  T &vector_3d<T>::operator[] (unsigned short index) {
+  T &vector_3d<T>::operator[](unsigned short index) 
+  {
     assert(index < 3);
 
     switch(index) 
@@ -47,6 +48,7 @@ namespace glext
       case(0): return _x;
       case(1): return _y;
       case(2): return _z;
+      default: return _x;
     }
   }
 
@@ -238,5 +240,12 @@ namespace glext
   vector_3d<T> operator*(const T &s, const vector_3d<T> &v1)
   {
     return vector_3d<T>(s * v1.x(), s * v1.y(), s * v1.z());
+  }
+
+  /// Output operators
+  template <typename T>
+  std::ostream &operator<<(std::ostream &out, const vector_3d<T> &rhs)
+  {
+    return out << "(" << rhs.x() << ", " << rhs.y() << ", " << rhs.z() << ")";
   }
 }
