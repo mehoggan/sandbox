@@ -56,6 +56,21 @@ namespace glext
     }
   }
 
+  template <typename T>
+  const T &vector_4d<T>::operator[](unsigned short index) const 
+  {
+    assert(index < 4);
+
+    switch(index) 
+    {
+      case(0): return _x;
+      case(1): return _y;
+      case(2): return _z;
+      case(3): return _w;
+      default: return _x;
+    }
+  }
+
   /// Setters
   template <typename T>
   void vector_4d<T>::x(const T &x)

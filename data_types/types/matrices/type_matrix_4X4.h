@@ -56,7 +56,12 @@ namespace glext
     /*! \brief index operator which returns a reference to one of the inner
      * vector_4d<T>s
      */
-    vector_4d<T> &operator[] (unsigned short index);
+    vector_4d<T> &operator[](unsigned short index);
+    
+    /*! \brief index operator which returns a const reference to one of the 
+     * inner vector_4d<T>s
+     */
+    const vector_4d<T> &operator[](unsigned short index) const;
 
     /*! \brief setter for memeber vector_4d<T> v0 
      */ 
@@ -101,6 +106,10 @@ namespace glext
     /*! \brief multiply this matrix by another matrix
      */
     void operator*=(const matrix_4X4 &rhs);
+    
+    /*! \brief multiply this matrix by another matrix
+     */
+    void operator*=(const T &rhs);
   };
 
   template <typename U, matrix_layout ML>

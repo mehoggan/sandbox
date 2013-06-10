@@ -36,7 +36,21 @@ namespace glext
 
   /// Sub-index operator
   template <typename T>
-  T &vector_2d<T>::operator[](unsigned short index) {
+  T &vector_2d<T>::operator[](unsigned short index) 
+  {
+    assert(index < 2);
+
+    switch(index) 
+    {
+      case(0): return _x;
+      case(1): return _y;
+      default: return _x;
+    }
+  }
+
+  template <typename T>
+  const T &vector_2d<T>::operator[](unsigned short index) const
+  {
     assert(index < 2);
 
     switch(index) 

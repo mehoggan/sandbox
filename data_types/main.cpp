@@ -13,9 +13,11 @@
 int main() {
   typedef glext::vector_2d<float> vec2;
   typedef glext::vector_3d<float> vec3;
+  typedef glext::vector_4d<float> vec4;
   typedef glext::point_2d<float> point2;
   typedef glext::point_3d<float> point3;
-  typedef glext::matrix_4X4<float> mat4;
+  typedef glext::matrix_4X4<float, glext::column> cmat4;
+  typedef glext::matrix_4X4<float, glext::row> rmat4;
 
   // Constructor Tests
   vec2 v1;
@@ -54,8 +56,31 @@ int main() {
   vec2 v9(p2 - p1);
   GLEXT_UNUSED_VAR(v9);
   
-  mat4 A(glext::identity);
-  mat4 B(glext::identity);
-  mat4 C = A + B;
-  std::cout << C << std::endl;
+  vec4 vc1(1, 5, 9, 13);
+  vec4 vc2(2, 6, 10, 14);
+  vec4 vc3(3, 7, 11, 15);
+  vec4 vc4(4, 8, 12, 16);
+  cmat4 cm(vc1, vc2, vc3, vc4);
+  cm *= cm;
+  std::cout << cm << std::endl;
+  cm = -cm; 
+  std::cout << cm << std::endl;
+  cm *= 10.0f;
+  std::cout << cm << std::endl;
+  cm = 10.0f * cm;
+  std::cout << cm << std::endl;
+
+  vec4 vr1(1, 2, 3, 4);
+  vec4 vr2(5, 6, 7, 8);
+  vec4 vr3(9, 10, 11, 12);
+  vec4 vr4(13, 14, 15, 16);
+  rmat4 rm(vr1, vr2, vr3, vr4);
+  rm *= rm;
+  std::cout << rm << std::endl;
+  rm = -rm;
+  std::cout << rm << std::endl;
+  rm *= 10.0f;
+  std::cout << rm << std::endl;
+  rm = 10.0f * rm;
+  std::cout << rm << std::endl;
 }

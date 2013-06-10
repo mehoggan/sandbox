@@ -61,7 +61,25 @@ namespace glext
       case(1): return _v1;
       case(2): return _v2;
       case(3): return _v3;
+      default: return _v0;
     }
+    return _v0;
+  }
+
+  template <typename T, matrix_layout ML>
+  const vector_4d<T> &matrix_4X4<T, ML>::operator[](unsigned short index) const
+  {
+    assert(index < 4);
+
+    switch(index)
+    {
+      case(0): return _v0;
+      case(1): return _v1;
+      case(2): return _v2;
+      case(3): return _v3;
+      default: return _v0;
+    }
+    return _v0;
   }
 
   /// Setters
@@ -135,11 +153,68 @@ namespace glext
   template <typename T, matrix_layout ML>
   void matrix_4X4<T, ML>::operator*=(const matrix_4X4 &rhs)
   {
-    // TODO Implement this by unrolling the loops
+    if (ML == column) {
+      /* [col][row] */
+      vector_4d<T> v0(
+        _v0[0]*rhs[0][0]+_v1[0]*rhs[0][1]+_v2[0]*rhs[0][2]+_v3[0]*rhs[0][3],
+        _v0[1]*rhs[0][0]+_v1[1]*rhs[0][1]+_v2[1]*rhs[0][2]+_v3[1]*rhs[0][3],
+        _v0[2]*rhs[0][0]+_v1[2]*rhs[0][1]+_v2[2]*rhs[0][2]+_v3[2]*rhs[0][3],
+        _v0[3]*rhs[0][0]+_v1[3]*rhs[0][1]+_v2[3]*rhs[0][2]+_v3[3]*rhs[0][3]);
+      vector_4d<T>v1(
+        _v0[0]*rhs[1][0]+_v1[0]*rhs[1][1]+_v2[0]*rhs[1][2]+_v3[0]*rhs[1][3],
+        _v0[1]*rhs[1][0]+_v1[1]*rhs[1][1]+_v2[1]*rhs[1][2]+_v3[1]*rhs[1][3],
+        _v0[2]*rhs[1][0]+_v1[2]*rhs[1][1]+_v2[2]*rhs[1][2]+_v3[2]*rhs[1][3],
+        _v0[3]*rhs[1][0]+_v1[3]*rhs[1][1]+_v2[3]*rhs[1][2]+_v3[3]*rhs[1][3]);
+      vector_4d<T>v2(
+        _v0[0]*rhs[2][0]+_v1[0]*rhs[2][1]+_v2[0]*rhs[2][2]+_v3[0]*rhs[2][3],
+        _v0[1]*rhs[2][0]+_v1[1]*rhs[2][1]+_v2[1]*rhs[2][2]+_v3[1]*rhs[2][3],
+        _v0[2]*rhs[2][0]+_v1[2]*rhs[2][1]+_v2[2]*rhs[2][2]+_v3[2]*rhs[2][3],
+        _v0[3]*rhs[2][0]+_v1[3]*rhs[2][1]+_v2[3]*rhs[2][2]+_v3[3]*rhs[2][3]);
+      vector_4d<T>v3(
+        _v0[0]*rhs[3][0]+_v1[0]*rhs[3][1]+_v2[0]*rhs[3][2]+_v3[0]*rhs[3][3],
+        _v0[1]*rhs[3][0]+_v1[1]*rhs[3][1]+_v2[1]*rhs[3][2]+_v3[1]*rhs[3][3],
+        _v0[2]*rhs[3][0]+_v1[2]*rhs[3][1]+_v2[2]*rhs[3][2]+_v3[2]*rhs[3][3],
+        _v0[3]*rhs[3][0]+_v1[3]*rhs[3][1]+_v2[3]*rhs[3][2]+_v3[3]*rhs[3][3]);
+      /* construct matrix using column vectors */
+      (*this) = matrix_4X4<T, ML>(v0, v1, v2, v3);
+    } else if (ML == row) {
+      /* [row][col] */
+      vector_4d<T> v0(
+        _v0[0]*rhs[0][0]+_v0[1]*rhs[1][0]+_v0[2]*rhs[2][0]+_v0[3]*rhs[3][0],
+        _v0[0]*rhs[0][1]+_v0[1]*rhs[1][1]+_v0[2]*rhs[2][1]+_v0[3]*rhs[3][1],
+        _v0[0]*rhs[0][2]+_v0[1]*rhs[1][2]+_v0[2]*rhs[2][2]+_v0[3]*rhs[3][2],
+        _v0[0]*rhs[0][3]+_v0[1]*rhs[1][3]+_v0[2]*rhs[2][3]+_v0[3]*rhs[3][3]);
+      vector_4d<T> v1(
+        _v1[0]*rhs[0][0]+_v1[1]*rhs[1][0]+_v1[2]*rhs[2][0]+_v1[3]*rhs[3][0],
+        _v1[0]*rhs[0][1]+_v1[1]*rhs[1][1]+_v1[2]*rhs[2][1]+_v1[3]*rhs[3][1],
+        _v1[0]*rhs[0][2]+_v1[1]*rhs[1][2]+_v1[2]*rhs[2][2]+_v1[3]*rhs[3][2],
+        _v1[0]*rhs[0][3]+_v1[1]*rhs[1][3]+_v1[2]*rhs[2][3]+_v1[3]*rhs[3][3]);
+      vector_4d<T> v2(
+        _v2[0]*rhs[0][0]+_v2[1]*rhs[1][0]+_v2[2]*rhs[2][0]+_v2[3]*rhs[3][0],
+        _v2[0]*rhs[0][1]+_v2[1]*rhs[1][1]+_v2[2]*rhs[2][1]+_v2[3]*rhs[3][1],
+        _v2[0]*rhs[0][2]+_v2[1]*rhs[1][2]+_v2[2]*rhs[2][2]+_v2[3]*rhs[3][2],
+        _v2[0]*rhs[0][3]+_v2[1]*rhs[1][3]+_v2[2]*rhs[2][3]+_v2[3]*rhs[3][3]);
+      vector_4d<T> v3(
+        _v3[0]*rhs[0][0]+_v3[1]*rhs[1][0]+_v3[2]*rhs[2][0]+_v3[3]*rhs[3][0],
+        _v3[0]*rhs[0][1]+_v3[1]*rhs[1][1]+_v3[2]*rhs[2][1]+_v3[3]*rhs[3][1],
+        _v3[0]*rhs[0][2]+_v3[1]*rhs[1][2]+_v3[2]*rhs[2][2]+_v3[3]*rhs[3][2],
+        _v3[0]*rhs[0][3]+_v3[1]*rhs[1][3]+_v3[2]*rhs[2][3]+_v3[3]*rhs[3][3]);
+      /* construct matrix using row vectors */
+      (*this) = matrix_4X4<T, ML>(v0, v1, v2, v3);
+    }
   }
 
-  template <typename U>
-  void swap(matrix_4X4<U> &lhs, matrix_4X4<U> &rhs)
+  template <typename T, matrix_layout ML>
+  void matrix_4X4<T, ML>::operator*=(const T &rhs)
+  {
+      _v0 *= rhs;
+      _v1 *= rhs; 
+      _v2 *= rhs; 
+      _v2 *= rhs;
+  }
+
+  template <typename U, matrix_layout ML>
+  void swap(matrix_4X4<U, ML> &lhs, matrix_4X4<U, ML> &rhs)
   {
     std::swap(lhs[0], rhs[0]);
     std::swap(lhs[1], rhs[1]);
@@ -163,19 +238,27 @@ namespace glext
   matrix_4X4<T, ML> operator-(const matrix_4X4<T, ML> &m1, 
     const matrix_4X4<T, ML> &m2)
   {
-    // TODO Implement this by unrolling the loops
+    return matrix_4X4<T, ML>(
+      m1.vec0() - m2.vec0(),
+      m1.vec1() - m2.vec1(),
+      m1.vec2() - m2.vec2(),
+      m1.vec3() - m2.vec3());
   }
 
   template <typename T, matrix_layout ML>
   matrix_4X4<T, ML> operator-(const matrix_4X4<T, ML> &m1)
   {
-    // TODO Implement this by unrolling the loops
+    return matrix_4X4<T, ML>(-m1.vec0(), -m1.vec1(), -m1.vec2(), -m1.vec3());
   }
 
   template <typename T, matrix_layout ML>
   matrix_4X4<T, ML> operator*(const T &s, const matrix_4X4<T, ML> &m1)
   {
-    // TODO Implement this by unrolling the loops
+    return matrix_4X4<T, ML>(
+      s * m1.vec0(), 
+      s * m1.vec1(), 
+      s * m1.vec2(), 
+      s * m1.vec3());
   }
 
   template <typename T, matrix_layout ML>

@@ -46,6 +46,10 @@ namespace glext
      */
     T &operator[] (unsigned short index);
 
+    /*! \brief index operator wich allows you to change internal data
+     */
+    const T &operator[] (unsigned short index) const;
+
     /*! \brief setter for x element
      */ 
     void x(const T &x);
