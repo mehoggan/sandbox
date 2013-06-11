@@ -210,7 +210,7 @@ namespace glext
       _v0 *= rhs;
       _v1 *= rhs; 
       _v2 *= rhs; 
-      _v2 *= rhs;
+      _v3 *= rhs;
   }
 
   template <typename U, matrix_layout ML>

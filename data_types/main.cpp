@@ -3,6 +3,7 @@
 #include <types/vectors/type_vector_4d.h>
 #include <types/points/type_point_2d.h>
 #include <types/points/type_point_3d.h>
+#include <math/trig.h>
 #include <math/vector.h>
 
 #include <types/matrices/type_matrix_4X4.h>
@@ -83,4 +84,7 @@ int main() {
   std::cout << rm << std::endl;
   rm = 10.0f * rm;
   std::cout << rm << std::endl;
+
+  float PI = pi<long double>();
+  std::cout << PI << std::endl;  
 }
