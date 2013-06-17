@@ -1,3 +1,19 @@
+/*
+ * Copyright 2013 Matthew Everett Hoggan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 namespace glext 
 {
   /// Constructors
@@ -22,7 +38,7 @@ namespace glext
   color_rgba<T>::color_rgba(const color_rgba &rhs) :
     _r(rhs._r),
     _g(rhs._g),
-    _b(rhs._b)
+    _b(rhs._b),
     _a(rhs._a)
   {}
 
@@ -33,7 +49,7 @@ namespace glext
 
   /// Assignment operator
   template <typename T>
-  color_rgba &color_rgba<T>::operator=(color_rgba rhs)
+  color_rgba<T> &color_rgba<T>::operator=(color_rgba<T> rhs)
   {
     swap((*this), rhs);
 
@@ -126,17 +142,17 @@ namespace glext
   }
 
   /// Utility methods
-  template <typename U>
-  void to_bgra()
+  template <typename T>
+  void color_rgba<T>::to_bgra()
   {
-    std::swap(r, b);
+    std::swap(_r, _b);
   }
 
-  template <typename U>
-  void to_abgr()
+  template <typename T>
+  void color_rgba<T>::to_abgr()
   {
-    std::swap(r, a);
-    std::swap(b, g);
+    std::swap(_r, _a);
+    std::swap(_b, _g);
   }
 
   template <typename U>

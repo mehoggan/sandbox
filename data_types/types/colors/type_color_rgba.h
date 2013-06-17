@@ -1,3 +1,18 @@
+/*
+ * Copyright 2013 Matthew Everett Hoggan
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 #ifndef COLORRGBA_H_INCLUDED
 #define COLORRGBA_H_INCLUDED
 
@@ -33,7 +48,7 @@ namespace glext
 
     /*! \brief constructor sets both elements to the paramaters provided
      */  
-    color_rgba(const T &r, const T &g, const T &b);
+    color_rgba(const T &r, const T &g, const T &b, const T &a);
 
     /*! \brief copy constructor
      */  

@@ -14,78 +14,88 @@
  * limitations under the License.
  */
 
-#ifndef POINT2D_H_INCLUDED
-#define POINT2D_H_INCLUDED
+#ifndef TEXCOORD2D_H_INCLUDED
+#define TEXCOORD2D_H_INCLUDED
 
 #include <glext.h>
+#include <math/sqrt.h>
+#include <math/clamp.h>
+
+#include <cassert>
 
 namespace glext 
 {
   /*! \class Point 2D class geometry based
-   *  \brief This class defines a 2D point
+   *  \brief This class defines a 2D vector
    */
   template <typename T>
-  class point_2d
+  class texcoord_2d
   {
   private:
     /// The first element in the ordered pair
-    T _x;
+    T _s;
     
     /// The second element in the ordered pair
-    T _y;
+    T _t;
   
   public:
     /*! \brief default constructor sets both elements using default constructor
      */  
-    point_2d();
+    texcoord_2d();
 
     /*! \brief constructor sets both elements to the paramaters provided
      */  
-    point_2d(const T &x, const T &y);
+    texcoord_2d(const T &s, const T &t);
 
     /*! \brief copy constructor
      */  
-    point_2d(const point_2d &rhs);
+    texcoord_2d(const texcoord_2d &rhs);
 
     /*! \brief destructor 
      */
-    ~point_2d();
+    ~texcoord_2d();
 
     /*! \brief assignment uses copy-swap idiom 
      */ 
-    point_2d &operator=(point_2d rhs);
+    texcoord_2d &operator=(texcoord_2d rhs);
 
-    /*! \brief setter for x element
+    /*! \brief index operator wich allows you to change internal data
+     */
+    T &operator[] (unsigned short index);
+
+    /*! \brief index operator wich allows you to change internal data
+     */
+    const T &operator[] (unsigned short index) const;
+
+    /*! \brief setter for s element
      */ 
-    void x(const T &x);
+    void s(const T &s);
 
-    /*! \brief setter for y element
+    /*! \brief setter for t element
      */
-    void y(const T &y);
+    void t(const T &t);
 
-    /*! \brief setter for both x and y element
+    /*! \brief setter for both s and t element
      */
-    void x_and_y(const T &x, const T &y);
+    void s_and_t(const T &s, const T &t);
 
-    /*! \brief getter for x element returns a reference to x of type T
+    /*! \brief getter for s element returns a reference to s of type T
      */
-    T& xref();
+    T& sref();
 
-    /*! \brief getter for y element returns a reference to y of type T
+    /*! \brief getter for t element returns a reference to t of type T
      */
-    T& yref();
+    T& tref();
     
-    /*! \brief getter for x element returns a copy of x of type T
+    /*! \brief getter for s element returns a copy of s of type T
      */
-    T x() const;
+    T s() const;
 
-    /*! \brief getter for y element returns a copy of y of type T
+    /*! \brief getter for t element returns a copy of t of type T
      */
-    T y() const;
+    T t() const;
   };
-
-  template <typename U>
-  void swap(point_2d<U> &lhs, point_2d<U> &rhs);
 }
-#include "type_point_2d.inl"
+
+#include "type_texcoord_2d.inl"
 #endif
