@@ -102,9 +102,6 @@ namespace glext
      */
     void operator*=(const T &rhs);
   };
-
-  template <typename U>
-  void swap(vector_2d<U> &lhs, vector_2d<U> &rhs);
 }
 
 #include "type_vector_2d.inl"

@@ -132,9 +132,6 @@ namespace glext
      */
     void operator*=(const T &rhs);
   };
-
-  template <typename U>
-  void swap(vector_4d<U> &lhs, vector_4d<U> &rhs);
 }
 #include "type_vector_4d.inl"
 #endif

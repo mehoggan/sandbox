@@ -3,9 +3,9 @@ namespace glext
   /// Constructors
   template <typename T>
   point_3d<T>::point_3d() :
-    _x(0),
-    _y(0),
-    _z(0)
+    _x(T(0)),
+    _y(T(0)),
+    _z(T(0))
   {}
 
   template <typename T>

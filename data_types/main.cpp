@@ -3,6 +3,8 @@
 #include <types/vectors/type_vector_4d.h>
 #include <types/points/type_point_2d.h>
 #include <types/points/type_point_3d.h>
+#include <types/colors/type_color_rgb.h>
+#include <types/colors/type_color_rgba.h>
 #include <math/trig.h>
 #include <math/vector.h>
 
@@ -22,4 +24,6 @@ int main() {
 
   float cos_0 = glext::cos<float, glext::degrees>(0.0f);
   std::cout << "cos(0) = " << cos_0 << std::endl;
+
+
 }
