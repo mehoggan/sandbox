@@ -24,6 +24,7 @@
 #include <cstdio>
 #include <limits>
 #include <iostream>
+#include <vector>
 
 #define GLEXT_UNUSED_VAR(x) (void)(x)
 
