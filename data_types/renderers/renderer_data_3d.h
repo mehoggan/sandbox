@@ -5,7 +5,7 @@
 
 namespace glext
 {
-  template <template T1, template T2, template T3>
+  template <typename T1, typename T2, typename T3>
   struct renderer_data_3d
   {
   public:
@@ -39,8 +39,8 @@ namespace glext
 
     /*! \brief constructor
      */
-    renderer_data_3d(std::vector<T1> &data_1, std::vector<T2> &data_2,
-      std::vector<T3> &data_3);
+    renderer_data_3d(const std::vector<T1> &data_1, const std::vector<T2> &data_2,
+      const std::vector<T3> &data_3);
 
     /*! \brief copy constructor
      */

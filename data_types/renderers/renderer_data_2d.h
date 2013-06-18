@@ -5,7 +5,7 @@
 
 namespace glext
 {
-  template <template T1, template T2>
+  template <typename T1, typename T2>
   struct renderer_data_2d
   {
   public:
@@ -31,7 +31,8 @@ namespace glext
 
     /*! \brief constructor
      */
-    renderer_data_2d(std::vector<T1> &data_1, std::vector<T2> &data_2);
+    renderer_data_2d(const std::vector<T1> &data_1, 
+      const std::vector<T2> &data_2);
 
     /*! \brief copy constructor
      */

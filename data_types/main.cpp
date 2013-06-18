@@ -10,6 +10,15 @@
 #include <types/texcoord/type_texcoord_3d.h>
 #include <types/texcoord/type_texcoord_4d.h>
 #include <types/matrices/type_matrix_4X4.h>
+#include <renderers/interleaved_data_2d.h>
+#include <renderers/renderer_data_1d.h>
+#include <renderers/renderer_data_2d.h>
+#include <renderers/renderer_data_3d.h>
+#include <renderers/renderer_data_4d.h>
+#include <renderers/interleaved_data_1d.h>
+#include <renderers/interleaved_data_2d.h>
+#include <renderers/interleaved_data_3d.h>
+#include <renderers/interleaved_data_4d.h>
 
 #include <math/trig.h>
 #include <math/vector.h>

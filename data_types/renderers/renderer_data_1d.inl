@@ -2,22 +2,19 @@ namespace glext
 {
   /// Constructors
   template <typename T1>        
-  renderer_data_1d_<T>::renderer_data_1d()
-  {
-  }
+  renderer_data_1d<T>::renderer_data_1d()
+  {}
 
   template <typename T1>        
-  renderer_data_1d_<T>::renderer_data_1d(std::vector<T1> &data_1) :
+  renderer_data_1d<T>::renderer_data_1d(const std::vector<T1> &data_1) :
     _data_1(data_1)
-  {
-  }
+  {}
 
   /// Copy constructor
   template <typename T1>        
-  renderer_data_1d_<T>::renderer_data_1d(const renderer_data_1d &rhs) :
+  renderer_data_1d<T>::renderer_data_1d(const renderer_data_1d &rhs) :
     _data_1(rhs._data_1)
-  {
-  }
+  {}
 
   /// Destructor
   template <typename T1>        
@@ -28,7 +25,7 @@ namespace glext
 
   /// Assignment operator
   template <typename T1>        
-  renderer_data_1d &renderer_data_1d_<T>::operator=(renderer_data_1d &rhs)
+  renderer_data_1d &renderer_data_1d<T>::operator=(renderer_data_1d &rhs)
   {
     swap((*this), rhs);
 
@@ -41,7 +38,6 @@ namespace glext
   {
     lhs._data_1.swap(rhs.data_1);
   }
-
 
   template <typename T1>        
   bool operator==(const renderer_data_1d<T1> &lhs, 

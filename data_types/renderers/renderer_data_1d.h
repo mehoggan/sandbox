@@ -5,7 +5,7 @@
 
 namespace glext
 {
-  template <template T1>
+  template <typename T1>
   struct renderer_data_1d
   {
   public:
@@ -23,7 +23,7 @@ namespace glext
 
     /*! \brief constructor
      */
-    renderer_data_1d(std::vector<T1> &data_1);
+    renderer_data_1d(const std::vector<T1> &data_1);
 
     /*! \brief copy constructor
      */
