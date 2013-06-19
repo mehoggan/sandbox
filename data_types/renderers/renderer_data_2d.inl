@@ -21,7 +21,7 @@ namespace glext
 
   /// Destructor
   template <typename T1, typename T2>        
-  ~renderer_data_2d()
+  renderer_data_2d<T>::~renderer_data_2d()
   {
     _data_1.clear();
     _data_2.clear();

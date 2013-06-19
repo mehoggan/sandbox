@@ -15,7 +15,6 @@
 #include <renderers/renderer_data_2d.h>
 #include <renderers/renderer_data_3d.h>
 #include <renderers/renderer_data_4d.h>
-#include <renderers/interleaved_data_1d.h>
 #include <renderers/interleaved_data_2d.h>
 #include <renderers/interleaved_data_3d.h>
 #include <renderers/interleaved_data_4d.h>
@@ -36,10 +35,23 @@ int main() {
   typedef glext::texcoord_2d<float> tex2;
   typedef glext::texcoord_3d<float> tex3;
   typedef glext::texcoord_4d<float> tex4;
+  typedef glext::color_rgb<float> color3;
+  typedef glext::color_rgba<float> color3a;
   typedef glext::matrix_4X4<float, glext::column> cmat4;
   typedef glext::matrix_4X4<float, glext::row> rmat4;
 
-  tex2 t0;
-  tex2 t1 = t0;
-  std::cout << t1 << std::endl;
+  std::vector<glext::interleaved_datum_2d<point2, color3> > data;
+  glext::interleaved_datum_2d<point2, color3> vertex1(point2(0.0f, 0.0f),
+    color3(1.0f, 0.0f, 0.0f));
+  glext::interleaved_datum_2d<point2, color3> vertex2(point2(1.0f, 0.0f),
+    color3(1.0f, 0.0f, 0.0f));
+  glext::interleaved_datum_2d<point2, color3> vertex3(point2(1.0f, 1.0f),
+    color3(1.0f, 0.0f, 0.0f));
+  glext::interleaved_datum_2d<point2, color3> vertex4(point2(0.0f, 1.0f),
+    color3(1.0f, 0.0f, 0.0f));
+  data.push_back(vertex1);
+  data.push_back(vertex2);
+  data.push_back(vertex3);
+  data.push_back(vertex4);
+  glext::interleaved_data_2d<point2, color3> verticies(data);
 }

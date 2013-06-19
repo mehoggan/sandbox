@@ -45,6 +45,30 @@ namespace glext
     /*! \brief assignment uses copy-swap idiom
      */
     renderer_data_2d &operator=(renderer_data_2d &rhs);
+
+    /*! \brief if all data is in same vbo then this points to first element
+     * in the vbo of type T1
+     */
+    size_t t1_offset() const;
+
+    /*! \brief if all data is in same vbo then this points to first element
+     * in the vbo of type T2
+     */
+    size_t t2_offset() const;
+
+    /*! \brief data size
+     */
+    size_t size_of() const;
+
+    /*! \brief if all data is in same vbo then this points to last element
+     * in the vbo of type T1 when added to t1_offset()
+     */
+    size_t data1_size_of() const;
+
+    /*! \brief if all data is in same vbo then this points to last element
+     * in the vbo of type T2 when added to t2_offset()
+     */
+    size_t data2_size_of() const;
   };
 }
 
