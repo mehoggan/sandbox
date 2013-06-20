@@ -1,0 +1,6 @@
+#ifndef BATCH_RENDERER_H_INCLUDED
+#define BATCH_RENDERER_H_INCLUDED
+
+
+
+#endif

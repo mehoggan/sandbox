@@ -1,0 +1,6 @@
+#ifndef INDEXED_RENDERER_H_INCLUDED
+#define INDEXED_RENDERER_H_INCLUDED
+
+
+
+#endif
