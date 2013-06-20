@@ -36,6 +36,37 @@ namespace glext
     return (*this); 
   }
 
+  /// VBO parameters
+  template <typename T1, typename T2>
+  size_t renderer_data_3d<T>::t1_offset() const
+  {
+    return 0;
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_3d<T>::t2_offset() const
+  {
+    return t1_offset() + _data_1.size() * sizeof(internal_type1);
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_3d<T>::size_of() const
+  {
+    return data1_size_of() + data2_size_of();
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_3d<T>::data1_size_of() const
+  {
+    return _data_1.size() * sizeof(internal_type1);
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_3d<T>::data2_size_of() const
+  {
+    return _data_2.size() * sizeof(internal_type2);
+  }
+
   /// Copy and swap idiom
   template <typename T1, typename T2>
   void swap(renderer_data_2d<T1> &lhs, renderer_data_2d<T1> &rhs)

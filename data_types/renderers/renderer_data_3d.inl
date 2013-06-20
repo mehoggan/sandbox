@@ -38,6 +38,49 @@ namespace glext
 
     return (*this); 
   }
+ 
+  /// VBO parameters
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::t1_offset() const
+  {
+    return 0;
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::t2_offset() const
+  {
+    return t1_offset() + _data_1.size() * sizeof(internal_type1);
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::t3_offset() const
+  {
+    return t2_offset() + _data_2.size() * sizeof(internal_type2);
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::size_of() const
+  {
+    return data1_size_of() + data2_size_of() + data3_size_of();
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::data1_size_of() const
+  {
+    return _data_1.size() * sizeof(internal_type1);
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::data2_size_of() const
+  {
+    return _data_2.size() * sizeof(internal_type2);
+  }
+
+  template <typename T1, typename T2, typename T3>
+  size_t renderer_data_3d<T>::data3_size_of() const
+  {
+    return _data_3.size() * sizeof(internal_type3);
+  }
 
   /// Copy and swap idiom
   template <typename T1, typename T2, typename T3>
@@ -48,6 +91,7 @@ namespace glext
     lhs._data_3.swap(rhs.data_3);
   }
 
+  /// Comparison Operators
   template <typename T1, typename T2, typename T3>        
   bool operator==(const renderer_data_3d<T1> &lhs, 
     const renderer_data_3d<T1> &rhs)
