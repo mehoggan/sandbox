@@ -18,7 +18,8 @@
 #include <renderers/types/interleaved_data_3d.h>
 #include <renderers/types/interleaved_data_4d.h>
 
-#include <renderers/batch_interleaved_renderer.h>
+#include <renderers/interleaved_renderer.h>
+#include <renderers/batch_renderer.h>
 
 #include <math/trig.h>
 #include <math/vector.h>
@@ -27,9 +28,12 @@
 #include <cassert>
 
 int main() {
+  glext::load_gl_extensions();
+
   typedef glext::point_2d<float> point2;
   typedef glext::color_rgb<float> color3;
-
+  
+  // Interleaved Data
   std::vector<glext::interleaved_datum_2d<point2, color3> > data;
   glext::interleaved_datum_2d<point2, color3> vertex1(
     point2(0.0f, 0.0f),
@@ -47,12 +51,30 @@ int main() {
   data.push_back(vertex2);
   data.push_back(vertex3);
   data.push_back(vertex4);
-  glext::interleaved_data_2d<point2, color3> verticies(data);
+  glext::interleaved_data_2d<point2, color3> iverticies(data);
+  glext::interleaved_renderer<
+    glext::interleaved_data_2d<point2, color3> > irenderer;
+  irenderer.load_data(iverticies);
+  irenderer.draw_data();
+  irenderer.modify_data(iverticies);
+  irenderer.destroy_resources();
+  
+  // Batch Data
+  std::vector<point2> pdata;
+  pdata.push_back(point2(0.0f, 0.0f));
+  pdata.push_back(point2(1.0f, 0.0f));
+  pdata.push_back(point2(1.0f, 1.0f));
+  pdata.push_back(point2(0.0f, 1.0f));
+  std::vector<color3> cdata;
+  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+  glext::renderer_data_2d<point2, color3> bverticies(pdata, cdata);
 
-  glext::batch_interleaved_renderer<
-    glext::interleaved_data_2d<point2, color3> > renderer;
-  renderer.load_data(verticies);
-  renderer.draw_data();
-  renderer.modify_data(verticies);
-  renderer.destroy_resources();
+  glext::batch_renderer<glext::renderer_data_2d<point2, color3> > brenderer;
+  brenderer.load_data(bverticies);
+  brenderer.draw_data();
+  brenderer.modify_data(bverticies);
+  brenderer.destroy_resources();
 }

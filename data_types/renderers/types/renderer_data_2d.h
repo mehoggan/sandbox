@@ -9,6 +9,10 @@ namespace glext
   struct renderer_data_2d
   {
   public:
+    /*! \brief tells the renderers how many types to load in batch mode
+     */
+    uint8_t _type_count;
+  
     /*! \brief determine type of the first renderer type
      */
     typedef T1 internal_type1;
@@ -24,6 +28,14 @@ namespace glext
     /*! \brief Data to be loaded into a vbo
      */
     std::vector<T2> _data_2;
+
+    /*! \brief Data to be loaded into a vbo
+     */
+    std::vector<null_type> _data_3;
+
+    /*! \brief Data to be loaded into a vbo
+     */
+    std::vector<null_type> _data_4;
 
     /*! \brief default constructor
      */
@@ -72,5 +84,5 @@ namespace glext
   };
 }
 
-#include "renderer_data_2d.h"
+#include "renderer_data_2d.inl"
 #endif

@@ -172,66 +172,74 @@ namespace glext
     unsigned_byte = GL_UNSIGNED_BYTE,
     unsigned_short = GL_UNSIGNED_SHORT
   };
+  
+  class null_type 
+  {
+  };
 
-  bool loaded = false;
-
+  /*!
+   * \brief load_gl_extensions this method loads all the extensions supported
+   * by OpenGL ES2
+   * \return bool
+   */
   bool load_gl_extensions()
   {
+    static bool loaded = false;
     if (loaded) {
       return true;
     }
 
     if (!glBlendFuncSeparate) {
-      glBlendFuncSeparate = (PFNGLBLENDFUNCSEPARATEPROC)(
-        glGetProcAddress("glBlendFuncSeparate"));
+      glBlendFuncSeparate = 
+        (PFNGLBLENDFUNCSEPARATEPROC)(glGetProcAddress("glBlendFuncSeparate"));
       if (!glBlendFuncSeparate) {
         throw "Failed to load glBlendFuncSeparate";
       }
     }
 
     if (!glGenerateMipmap) {
-      glGenerateMipmap = (PFNGLGENERATEMIPMAPPROC)(
-        glGetProcAddress("glGenerateMipmap"));
+      glGenerateMipmap = 
+        (PFNGLGENERATEMIPMAPPROC)(glGetProcAddress("glGenerateMipmap"));
       if (!glBlendFuncSeparate) {
         throw "Failed to load glGenerateMipmap";
       }
     }
 
     if (!glCreateShader) {
-      glCreateShader = (PFNGLCREATESHADERPROC)(
-        glGetProcAddress("glCreateShader"));
+      glCreateShader = 
+        (PFNGLCREATESHADERPROC)(glGetProcAddress("glCreateShader"));
       if (!glCreateShader) {
         throw "Failed to load glCreateShader";
       }
     }
 
     if (!glDeleteShader) {
-      glDeleteShader = (PFNGLDELETESHADERPROC)(
-        glGetProcAddress("glDeleteShader"));
+      glDeleteShader = 
+        (PFNGLDELETESHADERPROC)(glGetProcAddress("glDeleteShader"));
       if (!glDeleteShader) {
         throw "Failed to load glDeleteShader";
       }
     }
 
     if (!glCreateProgram) {
-      glCreateProgram = (PFNGLCREATEPROGRAMPROC)(
-        glGetProcAddress("glCreateProgram"));
+      glCreateProgram = 
+        (PFNGLCREATEPROGRAMPROC)(glGetProcAddress("glCreateProgram"));
       if (!glCreateProgram) {
         throw "Failed to load glCreateProgram";
       }
     }
 
     if (!glDeleteProgram) {
-      glDeleteProgram = (PFNGLDELETEPROGRAMPROC)(
-        glGetProcAddress("glDeleteProgram"));
+      glDeleteProgram = 
+        (PFNGLDELETEPROGRAMPROC)(glGetProcAddress("glDeleteProgram"));
       if (!glDeleteProgram) {
         throw "Failed to load glDeleteProgram";
       }
     }
 
     if (!glGetShaderiv) {
-      glGetShaderiv = (PFNGLGETSHADERIVPROC)(
-        glGetProcAddress("glGetShaderiv"));
+      glGetShaderiv = 
+        (PFNGLGETSHADERIVPROC)(glGetProcAddress("glGetShaderiv"));
       if (!glGetShaderiv) {
         throw "Failed to load glGetShaderiv";
       }
@@ -239,264 +247,263 @@ namespace glext
 
     if (!glAttachShader)
     {
-      glAttachShader = (PFNGLATTACHSHADERPROC)(
-        glGetProcAddress("glAttachShader"));
+      glAttachShader = 
+        (PFNGLATTACHSHADERPROC)(glGetProcAddress("glAttachShader"));
       if (!glAttachShader) {
         throw "Failed to load glAttachShader";
       }
     }
 
     if (!glDetachShader) {
-      glDetachShader = (PFNGLDETACHSHADERPROC)(
-        glGetProcAddress("glDetachShader"));
+      glDetachShader = 
+        (PFNGLDETACHSHADERPROC)(glGetProcAddress("glDetachShader"));
       if (!glDetachShader) {
         throw "Failed to load glDetachShader";
       }
     }
 
     if (!glGetShaderInfoLog) {
-      glGetShaderInfoLog = (PFNGLGETSHADERINFOLOGPROC)(
-        glGetProcAddress("glGetShaderInfoLog"));
+      glGetShaderInfoLog = 
+        (PFNGLGETSHADERINFOLOGPROC)(glGetProcAddress("glGetShaderInfoLog"));
       if (!glGetShaderInfoLog) {
         throw "Failed to load glGetShaderInfoLog";
       }
     }
 
     if (!glGetProgramInfoLog) {
-      glGetProgramInfoLog = (PFNGLGETPROGRAMINFOLOGPROC)(
-        glGetProcAddress("glGetProgramInfoLog"));
+      glGetProgramInfoLog = 
+        (PFNGLGETPROGRAMINFOLOGPROC)(glGetProcAddress("glGetProgramInfoLog"));
       if (!glGetProgramInfoLog) {
         throw "Failed to load glGetProgramInfoLog";
       }
     }
 
     if (!glGetProgramiv) {
-      glGetProgramiv = (PFNGLGETPROGRAMIVPROC)(
-        glGetProcAddress("glGetProgramiv"));
+      glGetProgramiv = 
+        (PFNGLGETPROGRAMIVPROC)(glGetProcAddress("glGetProgramiv"));
       if (!glGetProgramiv) {
         throw "Failed to load glGetProgramiv";
       }
     }
 
     if (!glUseProgram) {
-      glUseProgram = (PFNGLUSEPROGRAMPROC)(
-        glGetProcAddress("glUseProgram"));
+      glUseProgram = 
+        (PFNGLUSEPROGRAMPROC)(glGetProcAddress("glUseProgram"));
       if (!glUseProgram) {
         throw "Failed to load glUseProgram";
       }
     }
 
     if (!glShaderSource) {
-      glShaderSource = (PFNGLSHADERSOURCEPROC)(
-        glGetProcAddress("glShaderSource"));
+      glShaderSource = 
+        (PFNGLSHADERSOURCEPROC)(glGetProcAddress("glShaderSource"));
       if (!glShaderSource) {
         throw "Failed to load glShaderSource";
       }
     }
 
     if (!glCompileShader) {
-      glCompileShader = (PFNGLCOMPILESHADERPROC)(
-        glGetProcAddress("glCompileShader"));
+      glCompileShader = 
+        (PFNGLCOMPILESHADERPROC)(glGetProcAddress("glCompileShader"));
       if (!glCompileShader) {
         throw "Failed to load glCompileShader";
       }
     }
 
     if (!glLinkProgram) {
-      glLinkProgram = (PFNGLLINKPROGRAMPROC)(
-        glGetProcAddress("glLinkProgram"));
+      glLinkProgram = 
+        (PFNGLLINKPROGRAMPROC)(glGetProcAddress("glLinkProgram"));
       if (!glLinkProgram) {
         throw "Failed to load glLinkProgram";
       }
     }
 
     if (!glGetUniformLocation) {
-      glGetUniformLocation = (PFNGLGETUNIFORMLOCATIONPROC)(
-        glGetProcAddress("glGetUniformLocation"));
+      glGetUniformLocation = 
+        (PFNGLGETUNIFORMLOCATIONPROC)(glGetProcAddress("glGetUniformLocation"));
       if (!glGetUniformLocation) {
         throw "Failed to load glGetUniformLocation";
       }
     }
 
     if (!glUniform1f) {
-      glUniform1f = (PFNGLUNIFORM1FPROC)(
-        glGetProcAddress("glUniform1f"));
+      glUniform1f = 
+        (PFNGLUNIFORM1FPROC)(glGetProcAddress("glUniform1f"));
       if (!glUniform1f) {
         throw "Failed to load glUniform1f";
       }
     }
 
     if (!glUniform2f) {
-      glUniform2f = (PFNGLUNIFORM2FPROC)(
-        glGetProcAddress("glUniform2f"));
+      glUniform2f = 
+        (PFNGLUNIFORM2FPROC)(glGetProcAddress("glUniform2f"));
       if (!glUniform2f) {
         throw "Failed to load glUniform2f";
       }
     }
 
     if (!glUniform3f) {
-      glUniform3f = (PFNGLUNIFORM3FPROC)(
-        glGetProcAddress("glUniform3f"));
+      glUniform3f = 
+        (PFNGLUNIFORM3FPROC)(glGetProcAddress("glUniform3f"));
       if (!glUniform3f) {
         throw "Failed to load glUniform3f";
       }
     }
 
     if (!glUniform4f) {
-      glUniform4f = (PFNGLUNIFORM4FPROC)(
-        glGetProcAddress("glUniform4f"));
+      glUniform4f = 
+        (PFNGLUNIFORM4FPROC)(glGetProcAddress("glUniform4f"));
       if (!glUniform4f) {
         throw "Failed to load glUniform4f";
       }
     }
 
     if (!glUniform1i) {
-      glUniform1i = (PFNGLUNIFORM1IPROC)(
-        glGetProcAddress("glUniform1i"));
+      glUniform1i = 
+        (PFNGLUNIFORM1IPROC)(glGetProcAddress("glUniform1i"));
       if (!glUniform1i) {
         throw "Failed to load glUniform1i";
       }
     }
 
     if (!glUniform2i) {
-      glUniform2i = (PFNGLUNIFORM2IPROC)(
-        glGetProcAddress("glUniform2i"));
+      glUniform2i = 
+        (PFNGLUNIFORM2IPROC)(glGetProcAddress("glUniform2i"));
       if (!glUniform2i) {
         throw "Failed to load glUniform2i";
       }
     }
 
     if (!glUniform3i) {
-      glUniform3i = (PFNGLUNIFORM3IPROC)(
-        glGetProcAddress("glUniform3i"));
+      glUniform3i = 
+        (PFNGLUNIFORM3IPROC)(glGetProcAddress("glUniform3i"));
       if (!glUniform3i) {
         throw "Failed to load glUniform3i";
       }
     }
 
     if (!glUniform4i) {
-      glUniform4i = (PFNGLUNIFORM4IPROC)(
-        glGetProcAddress("glUniform4i"));
+      glUniform4i = 
+        (PFNGLUNIFORM4IPROC)(glGetProcAddress("glUniform4i"));
       if (!glUniform4i) {
         throw "Failed to load glUniform4i";
       }
     }
 
     if (!glUniform1iv) {
-      glUniform1iv = (PFNGLUNIFORM1IVPROC)(
-        glGetProcAddress("glUniform1iv"));
+      glUniform1iv = 
+        (PFNGLUNIFORM1IVPROC)(glGetProcAddress("glUniform1iv"));
       if (!glUniform1iv) {
         throw "Failed to load glUniform1iv";
       }
     }
 
     if (!glUniform2iv) {
-      glUniform2iv = (PFNGLUNIFORM2IVPROC)(
-        glGetProcAddress("glUniform2iv"));
+      glUniform2iv = 
+        (PFNGLUNIFORM2IVPROC)(glGetProcAddress("glUniform2iv"));
       if (!glUniform2iv) {
         throw "Failed to load glUniform2iv";
       }
     }
 
     if (!glUniform3iv) {
-      glUniform3iv = (PFNGLUNIFORM3IVPROC)(
-        glGetProcAddress("glUniform3iv"));
+      glUniform3iv = 
+        (PFNGLUNIFORM3IVPROC)(glGetProcAddress("glUniform3iv"));
       if (!glUniform3iv) {
         throw "Failed to load glUniform3iv";
       }
     }
 
     if (!glUniform4iv) {
-      glUniform4iv = (PFNGLUNIFORM4IVPROC)(
-        glGetProcAddress("glUniform4iv"));
+      glUniform4iv = 
+        (PFNGLUNIFORM4IVPROC)(glGetProcAddress("glUniform4iv"));
       if (!glUniform4iv) {
         throw "Failed to load glUniform4iv";
       }
     }
 
     if (!glUniformMatrix2fv) {
-      glUniformMatrix2fv = (PFNGLUNIFORMMATRIX2FVPROC)(
-        glGetProcAddress("glUniformMatrix2fv"));
+      glUniformMatrix2fv = 
+        (PFNGLUNIFORMMATRIX2FVPROC)(glGetProcAddress("glUniformMatrix2fv"));
       if (!glUniformMatrix2fv) {
         throw "Failed to load glUniformMatrix2fv";
       }
     }
 
     if (!glUniformMatrix3fv) {
-      glUniformMatrix3fv = (PFNGLUNIFORMMATRIX3FVPROC)(
-        glGetProcAddress("glUniformMatrix3fv"));
+      glUniformMatrix3fv = 
+        (PFNGLUNIFORMMATRIX3FVPROC)(glGetProcAddress("glUniformMatrix3fv"));
       if (!glUniformMatrix3fv) {
         throw "Failed to load glUniformMatrix3fv";
       }
     }
 
     if (!glUniformMatrix4fv) {
-      glUniformMatrix4fv = (PFNGLUNIFORMMATRIX4FVPROC)(
-        glGetProcAddress("glUniformMatrix4fv"));
+      glUniformMatrix4fv = 
+        (PFNGLUNIFORMMATRIX4FVPROC)(glGetProcAddress("glUniformMatrix4fv"));
       if (!glUniformMatrix4fv) {
         throw "Failed to load glUniformMatrix4fv";
       }
     }
 
     if (!glUniform1fv) {
-      glUniform1fv = (PFNGLUNIFORM1FVPROC)(
-        glGetProcAddress("glUniform1fv"));
+      glUniform1fv = 
+        (PFNGLUNIFORM1FVPROC)(glGetProcAddress("glUniform1fv"));
       if (!glUniform1fv) {
         throw "Failed to load glUniform1fv";
       }
     }
 
     if (!glUniform2fv) {
-      glUniform2fv = (PFNGLUNIFORM2FVPROC)(
-        glGetProcAddress("glUniform2fv"));
+      glUniform2fv = 
+        (PFNGLUNIFORM2FVPROC)(glGetProcAddress("glUniform2fv"));
       if (!glUniform2fv) {
         throw "Failed to load glUniform2fv";
       }
     }
 
     if (!glUniform3fv) {
-      glUniform3fv = (PFNGLUNIFORM3FVPROC)(
-        glGetProcAddress("glUniform3fv"));
+      glUniform3fv = 
+        (PFNGLUNIFORM3FVPROC)(glGetProcAddress("glUniform3fv"));
       if (!glUniform3fv) {
         throw "Failed to load glUniform3fv";
       }
     }
 
     if (!glUniform4fv) {
-      glUniform4fv = (PFNGLUNIFORM4FVPROC)(
-        glGetProcAddress("glUniform4fv"));
+      glUniform4fv = 
+        (PFNGLUNIFORM4FVPROC)(glGetProcAddress("glUniform4fv"));
       if (!glUniform4fv) {
         throw "Failed to load glUniform4fv";
       }
     }
 
     if (!glGetShaderSource) {
-      glGetShaderSource = (PFNGLGETSHADERSOURCEPROC)(
-        glGetProcAddress("glGetShaderSource"));
+      glGetShaderSource = 
+        (PFNGLGETSHADERSOURCEPROC)(glGetProcAddress("glGetShaderSource"));
       if (!glGetShaderSource) {
         throw "Failed to load glGetShaderSource";
       }
     }
 
     if (!glBindAttribLocation) {
-      glBindAttribLocation = (PFNGLBINDATTRIBLOCATIONPROC)(
-        glGetProcAddress("glBindAttribLocation"));
+      glBindAttribLocation = 
+        (PFNGLBINDATTRIBLOCATIONPROC)(glGetProcAddress("glBindAttribLocation"));
       if (!glBindAttribLocation) {
         throw "Failed to load glBindAttribLocation";
       }
     }
 
     if (!glGetAttribLocation) {
-      glGetAttribLocation = (PFNGLGETATTRIBLOCATIONPROC)(
-        glGetProcAddress("glGetAttribLocation"));
+      glGetAttribLocation = 
+        (PFNGLGETATTRIBLOCATIONPROC)(glGetProcAddress("glGetAttribLocation"));
       if (!glGetAttribLocation) {
         throw "Failed to load glGetAttribLocation";
       }
     }
 
     if (!glEnableVertexAttribArray) {
-      glEnableVertexAttribArray =
-        (PFNGLENABLEVERTEXATTRIBARRAYPROC)(
+      glEnableVertexAttribArray = (PFNGLENABLEVERTEXATTRIBARRAYPROC)(
         glGetProcAddress("glEnableVertexAttribArray"));
       if (!glEnableVertexAttribArray) {
         throw "Failed to load glEnableVertexAttribArray";
@@ -504,8 +511,7 @@ namespace glext
     }
 
     if (!glDisableVertexAttribArray) {
-      glDisableVertexAttribArray =
-        (PFNGLDISABLEVERTEXATTRIBARRAYPROC)(
+      glDisableVertexAttribArray = (PFNGLDISABLEVERTEXATTRIBARRAYPROC)(
         glGetProcAddress("glDisableVertexAttribArray"));
       if (!glDisableVertexAttribArray) {
         throw "Failed to load glDisableVertexAttribArray";
@@ -561,8 +567,8 @@ namespace glext
     }
 
     if (!glBindFramebufferEXT) {
-      glBindFramebufferEXT = (PFNGLBINDFRAMEBUFFEREXTPROC)(
-        glGetProcAddress("glBindFramebufferEXT"));
+      glBindFramebufferEXT = 
+        (PFNGLBINDFRAMEBUFFEREXTPROC)(glGetProcAddress("glBindFramebufferEXT"));
       if (!glBindFramebufferEXT) {
         throw "Failed to load glBindFramebufferEXT";
       }
@@ -571,15 +577,14 @@ namespace glext
     if (!glFramebufferTexture2DEXT) {
       glFramebufferTexture2DEXT =
         (PFNGLFRAMEBUFFERTEXTURE2DEXTPROC)(
-        glGetProcAddress("glFramebufferTexture2DEXT"));
+          glGetProcAddress("glFramebufferTexture2DEXT"));
       if (!glFramebufferTexture2DEXT) {
         throw "Failed to load glFramebufferTexture2DEXT";
       }
     }
 
     if (!glFramebufferRenderbufferEXT) {
-      glFramebufferRenderbufferEXT =
-        (PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC)(
+      glFramebufferRenderbufferEXT = (PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC)(
         glGetProcAddress("glFramebufferRenderbufferEXT"));
       if (!glFramebufferRenderbufferEXT) {
         throw "Failed to load glFramebufferRenderbufferEXT";
@@ -595,8 +600,7 @@ namespace glext
     }
 
     if (!glCheckFramebufferStatusEXT) {
-      glCheckFramebufferStatusEXT =
-        (PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC)(
+      glCheckFramebufferStatusEXT = (PFNGLCHECKFRAMEBUFFERSTATUSEXTPROC)(
         glGetProcAddress("glCheckFramebufferStatusEXT"));
       if (!glCheckFramebufferStatusEXT) {
         throw "Failed to load glCheckFramebufferStatusEXT";
@@ -684,24 +688,21 @@ namespace glext
     }
 
     if (!glGenBuffers) {
-      glGenBuffers = (PFNGLGENBUFFERSPROC)(
-        glGetProcAddress("glGenBuffers"));
+      glGenBuffers = (PFNGLGENBUFFERSPROC)(glGetProcAddress("glGenBuffers"));
       if (!glGenBuffers) {
         throw "Failed to load glGenBuffers";
       }
     }
 
     if (!glBindBuffer) {
-      glBindBuffer = (PFNGLBINDBUFFERPROC)(
-        glGetProcAddress("glBindBuffer"));
+      glBindBuffer = (PFNGLBINDBUFFERPROC)(glGetProcAddress("glBindBuffer"));
       if (!glBindBuffer) {
         throw "Failed to load glBindBuffer";
       }
     }
 
     if (!glBufferData) {
-      glBufferData = (PFNGLBUFFERDATAPROC)(
-        glGetProcAddress("glBufferData"));
+      glBufferData = (PFNGLBUFFERDATAPROC)(glGetProcAddress("glBufferData"));
       if (!glBufferData) {
         throw "Failed to load glBufferData";
       }
@@ -724,8 +725,7 @@ namespace glext
     }
 
     if (!glIsBuffer) {
-      glIsBuffer = (PFNGLISBUFFERPROC)(
-        glGetProcAddress("glIsBuffer"));
+      glIsBuffer = (PFNGLISBUFFERPROC)(glGetProcAddress("glIsBuffer"));
       if (!glIsBuffer) {
         throw "Failed to load glIsBuffer";
       }
@@ -740,16 +740,14 @@ namespace glext
     }
 
     if (!glMapBuffer) {
-      glMapBuffer = (PFNGLMAPBUFFERPROC)(
-        glGetProcAddress("glMapBuffer"));
+      glMapBuffer = (PFNGLMAPBUFFERPROC)(glGetProcAddress("glMapBuffer"));
       if (!glMapBuffer) {
         throw "Failed to load glMapBuffer";
       }
     }
 
     if (!glUnmapBuffer) {
-      glUnmapBuffer = (PFNGLUNMAPBUFFERPROC)(
-        glGetProcAddress("glUnmapBuffer"));
+      glUnmapBuffer = (PFNGLUNMAPBUFFERPROC)(glGetProcAddress("glUnmapBuffer"));
       if (!glUnmapBuffer) {
         throw "Failed to load glUnmapBuffer";
       }

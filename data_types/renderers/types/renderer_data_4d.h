@@ -9,6 +9,10 @@ namespace glext
   struct renderer_data_4d
   {
   public:
+    /*! \brief tells the renderers how many types to load in batch mode
+     */
+    uint8_t _type_count;
+  
     /*! \brief determine type of the first renderer type
      */
     typedef T1 internal_type1;
@@ -109,5 +113,5 @@ namespace glext
   };
 }
 
-#include "renderer_data_4d.h"
+#include "renderer_data_4d.inl"
 #endif
