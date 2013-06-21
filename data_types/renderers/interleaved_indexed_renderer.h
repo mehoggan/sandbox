@@ -1,5 +1,6 @@
-#ifndef INDEXED_RENDERER_H_INCLUDED
-#define INDEXED_RENDERER_H_INCLUDED
+#ifndef INDEX_INTERLEAVED_RENDERER_H_INCLUDED
+#define INDEX_INTERLEAVED_RENDERER_H_INCLUDED
+
 
 #include <glext.h>
 
@@ -15,7 +16,7 @@ namespace glext
     render_target_enum render_target = array_buffer,
     render_target_enum index_target = element_array_buffer
   >
-  class indexed_renderer
+  class indexed_interleaved_renderer
   {
   private:
     GLsizeiptr vertex_count_;
@@ -25,11 +26,11 @@ namespace glext
   public:
     /*! \brief Basic Constructor
      */
-    indexed_renderer();
+    indexed_interleaved_renderer();
 
     /*! \brief Basic Destructor
      */
-    ~indexed_renderer();
+    ~indexed_interleaved_renderer();
 
     /*! \brief Before this object goes out of scope call this method to release
      * the data in the VBO
@@ -68,5 +69,6 @@ namespace glext
   };
 }
 
-#include "indexed_renderer.inl"
+#include "interleaved_indexed_renderer.inl"
+
 #endif

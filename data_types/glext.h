@@ -777,7 +777,7 @@ namespace glext
       }
     }
 
-  #ifdef WIN32
+#ifdef WIN32
     if (!glActiveTexture) {
       glActiveTexture = (PFNGLACTIVETEXTUREPROC)(
         glGetProcAddress("glActiveTexture"));
@@ -785,7 +785,7 @@ namespace glext
         throw "Failed to load glActiveTexture";
       }
     }
-  #endif
+#endif
 
     loaded = true;
     return loaded;

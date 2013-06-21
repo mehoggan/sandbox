@@ -18,9 +18,7 @@ namespace glext
     _vertex_count(0),
     _byte_count(0),
     _vbo_id(0)
-  {
-
-  }
+  {}
 
   /// Destructor
   template
@@ -37,9 +35,7 @@ namespace glext
     render_usage,
     render_target
   >::~batch_renderer()
-  {
-
-  }
+  {}
 
   /// Methods that act on the VBO
   template
@@ -130,22 +126,26 @@ namespace glext
     glGenBuffers(buffer_count, &_vbo_id);
     if (bind()) {
       glBufferData(render_target, _byte_count, NULL, render_usage);
-      switch (_data.type_count) {
+      switch (_data._type_count) {
       case (4): {
-        glBufferSubData(render_target,);
+        glBufferSubData(render_target, _data.t4_offset(), _data.data4_size_of(),
+          _data._data_4.data());
       }
       case (3): {
-      
+        glBufferSubData(render_target, _data.t3_offset(), _data.data3_size_of(),
+          _data._data_3.data());
       }
       case (2): {
-      
+        glBufferSubData(render_target, _data.t2_offset(), _data.data2_size_of(),
+          _data._data_2.data());
       }
       case (1): {
-      
+        glBufferSubData(render_target, _data.t1_offset(), _data.data1_size_of(),
+          _data._data_1.data());
       }
         break;
       default: {
-        return;
+        return false;
       }
       }
     } else {

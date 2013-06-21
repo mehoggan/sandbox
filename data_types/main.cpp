@@ -19,7 +19,9 @@
 #include <renderers/types/interleaved_data_4d.h>
 
 #include <renderers/interleaved_renderer.h>
+#include <renderers/interleaved_indexed_renderer.h>
 #include <renderers/batch_renderer.h>
+#include <renderers/batch_indexed_renderer.h>
 
 #include <math/trig.h>
 #include <math/vector.h>

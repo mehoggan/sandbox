@@ -54,9 +54,22 @@ namespace glext
   }
 
   template <typename T1, typename T2>
+  size_t renderer_data_2d<T1, T2>::t3_offset() const
+  {
+    return 0;
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_2d<T1, T2>::t4_offset() const
+  {
+    return 0;
+  }
+
+  template <typename T1, typename T2>
   size_t renderer_data_2d<T1, T2>::size_of() const
   {
-    return data1_size_of() + data2_size_of();
+    return data1_size_of() + data2_size_of() + data3_size_of() +
+      data4_size_of();
   }
 
   template <typename T1, typename T2>
@@ -69,6 +82,18 @@ namespace glext
   size_t renderer_data_2d<T1, T2>::data2_size_of() const
   {
     return _data_2.size() * sizeof(internal_type2);
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_2d<T1, T2>::data3_size_of() const
+  {
+    return 0;
+  }
+
+  template <typename T1, typename T2>
+  size_t renderer_data_2d<T1, T2>::data4_size_of() const
+  {
+    return 0;
   }
 
   /// Copy and swap idiom

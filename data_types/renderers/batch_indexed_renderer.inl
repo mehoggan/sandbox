@@ -11,7 +11,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  indexed_renderer
+  batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -20,10 +20,8 @@ namespace glext
     render_usage,
     render_target,
     index_target
-  >::indexed_renderer()
-  {
-
-  }
+  >::batch_indexed_renderer()
+  {}
 
   /// Destructor
   template
@@ -36,7 +34,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  indexed_renderer
+  batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -45,10 +43,8 @@ namespace glext
     render_usage,
     render_target,
     index_target
-  >::~indexed_renderer()
-  {
-
-  }
+  >::~batch_indexed_renderer()
+  {}
 
   /// Methods that act on the VBO
   template
@@ -61,7 +57,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  void indexed_renderer
+  void batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -71,9 +67,7 @@ namespace glext
     render_target,
     index_target
   >::destroy_resources()
-  {
-
-  }
+  {}
 
   template
   <
@@ -85,7 +79,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  bool indexed_renderer
+  bool batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -109,7 +103,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  void indexed_renderer
+  void batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -119,8 +113,7 @@ namespace glext
     render_target,
     index_target
   >::unbind()
-  {
-  }
+  {}
 
   template
   <
@@ -132,7 +125,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  bool indexed_renderer
+  bool batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -157,7 +150,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  bool indexed_renderer
+  bool batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -181,7 +174,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  bool indexed_renderer
+  bool batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -205,7 +198,7 @@ namespace glext
     render_target_enum render_target,
     render_target_enum index_target
   >
-  bool indexed_renderer
+  bool batch_indexed_renderer
   <
     render_data_type,
     index_primitive_type,
@@ -217,6 +210,6 @@ namespace glext
   >::modify_indices(std::vector<index_primitive_type> &indices,
     GLsizeiptr start_index)
   {
-
+    return true;
   }
 }
