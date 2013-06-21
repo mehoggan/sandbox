@@ -1,5 +1,5 @@
-#ifndef BATCH_RENDERER_H_INCLUDED
-#define BATCH_RENDERER_H_INCLUDED
+#ifndef BATCH_INTERLEAVED_RENDERER_H_INCLUDED
+#define BATCH_INTERLEAVED_RENDERER_H_INCLUDED
 
 #include <glext.h>
 
@@ -12,7 +12,7 @@ namespace glext
     render_usage_enum render_usage = dynmaic_draw,
     render_target_enum render_target = array_buffer
   >
-  class batch_renderer
+  class batch_interleaved_renderer
   {
   private:
     render_data_type _data;
@@ -23,16 +23,16 @@ namespace glext
   public:
     /*! \brief Basic Constructor
      */
-    batch_renderer();
+    batch_interleaved_renderer();
 
     /*! \brief Basic Destructor
      */
-    ~batch_renderer();
+    ~batch_interleaved_renderer();
 
     /*! \brief Before this object goes out of scope call this method to release
      * the data in the VBO
      */
-    void destroy_resources();
+    void destroy_resources(); 
 
     /*! \brief Make sure the ID associated with the VBO is bound before use
      */
@@ -59,5 +59,5 @@ namespace glext
   };
 }
 
-#include "batch_renderer.inl"
+#include "batch_interleaved_renderer.inl"
 #endif
