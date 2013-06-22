@@ -172,6 +172,14 @@ namespace glext
     unsigned_byte = GL_UNSIGNED_BYTE,
     unsigned_short = GL_UNSIGNED_SHORT
   };
+
+  enum data_set
+  {
+    set1 = 0,
+    set2 = 1,
+    set3 = 2,
+    set4 = 3
+  };
   
   class null_type 
   {

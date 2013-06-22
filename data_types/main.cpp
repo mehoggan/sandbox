@@ -35,48 +35,83 @@ int main() {
   typedef glext::point_2d<float> point2;
   typedef glext::color_rgb<float> color3;
   
-  // Interleaved Data
-  std::vector<glext::interleaved_datum_2d<point2, color3> > data;
-  glext::interleaved_datum_2d<point2, color3> vertex1(
-    point2(0.0f, 0.0f),
-    color3(1.0f, 0.0f, 0.0f));
-  glext::interleaved_datum_2d<point2, color3> vertex2(
-    point2(1.0f, 0.0f),
-    color3(1.0f, 0.0f, 0.0f));
-  glext::interleaved_datum_2d<point2, color3> vertex3(
-    point2(1.0f, 1.0f),
-    color3(1.0f, 0.0f, 0.0f));
-  glext::interleaved_datum_2d<point2, color3> vertex4(
-    point2(0.0f, 1.0f),
-    color3(1.0f, 0.0f, 0.0f));
-  data.push_back(vertex1);
-  data.push_back(vertex2);
-  data.push_back(vertex3);
-  data.push_back(vertex4);
-  glext::interleaved_data_2d<point2, color3> iverticies(data);
-  glext::interleaved_renderer<
-    glext::interleaved_data_2d<point2, color3> > irenderer;
-  irenderer.load_data(iverticies);
-  irenderer.draw_data();
-  irenderer.modify_data(iverticies);
-  irenderer.destroy_resources();
-  
-  // Batch Data
-  std::vector<point2> pdata;
-  pdata.push_back(point2(0.0f, 0.0f));
-  pdata.push_back(point2(1.0f, 0.0f));
-  pdata.push_back(point2(1.0f, 1.0f));
-  pdata.push_back(point2(0.0f, 1.0f));
-  std::vector<color3> cdata;
-  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
-  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
-  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
-  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
-  glext::renderer_data_2d<point2, color3> bverticies(pdata, cdata);
+  // Batch Indexed Data
+  std::vector<point2> pidata;
+  pidata.push_back(point2(0.0f, 0.0f));
+  pidata.push_back(point2(1.0f, 0.0f));
+  pidata.push_back(point2(1.0f, 1.0f));
+  pidata.push_back(point2(0.0f, 1.0f));
+  std::vector<color3> cidata;
+  cidata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cidata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cidata.push_back(color3(1.0f, 0.0f, 0.0f));
+  cidata.push_back(color3(1.0f, 0.0f, 0.0f));
+  glext::renderer_data_2d<point2, color3> biverticies(pidata, cidata);
 
-  glext::batch_renderer<glext::renderer_data_2d<point2, color3> > brenderer;
-  brenderer.load_data(bverticies);
-  brenderer.draw_data();
-  brenderer.modify_data(bverticies);
-  brenderer.destroy_resources();
+  std::vector<short> bindicies;
+  bindicies.push_back(0);
+  bindicies.push_back(1);
+  bindicies.push_back(2);
+  bindicies.push_back(2);
+  bindicies.push_back(3);
+  bindicies.push_back(0);
+
+  glext::batch_indexed_renderer<
+    glext::renderer_data_2d<point2, color3>,
+    short
+  > birenderer;
+
+  birenderer.load_data(biverticies, bindicies);
+  birenderer.modify_data(biverticies, glext::set1);
+  birenderer.draw_data();
+  birenderer.destroy_resources();
+
+//  // Batch Data
+//  std::vector<point2> pdata;
+//  pdata.push_back(point2(0.0f, 0.0f));
+//  pdata.push_back(point2(1.0f, 0.0f));
+//  pdata.push_back(point2(1.0f, 1.0f));
+//  pdata.push_back(point2(1.0f, 1.0f));
+//  pdata.push_back(point2(0.0f, 1.0f));
+//  pdata.push_back(point2(0.0f, 0.0f));
+//  std::vector<color3> cdata;
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  cdata.push_back(color3(1.0f, 0.0f, 0.0f));
+//  glext::renderer_data_2d<point2, color3> bverticies(pdata, cdata);
+
+//  glext::batch_renderer<glext::renderer_data_2d<point2, color3> > brenderer;
+//  brenderer.load_data(bverticies);
+//  brenderer.modify_data(bverticies);
+//  brenderer.draw_data();
+//  brenderer.destroy_resources();
+
+//  // Interleaved Data
+//  std::vector<glext::interleaved_datum_2d<point2, color3> > data;
+//  glext::interleaved_datum_2d<point2, color3> vertex1(
+//    point2(0.0f, 0.0f),
+//    color3(1.0f, 0.0f, 0.0f));
+//  glext::interleaved_datum_2d<point2, color3> vertex2(
+//    point2(1.0f, 0.0f),
+//    color3(1.0f, 0.0f, 0.0f));
+//  glext::interleaved_datum_2d<point2, color3> vertex3(
+//    point2(1.0f, 1.0f),
+//    color3(1.0f, 0.0f, 0.0f));
+//  glext::interleaved_datum_2d<point2, color3> vertex4(
+//    point2(0.0f, 1.0f),
+//    color3(1.0f, 0.0f, 0.0f));
+//  data.push_back(vertex1);
+//  data.push_back(vertex2);
+//  data.push_back(vertex3);
+//  data.push_back(vertex4);
+//  glext::interleaved_data_2d<point2, color3> iverticies(data);
+//  glext::interleaved_renderer<
+//    glext::interleaved_data_2d<point2, color3> > irenderer;
+//  irenderer.load_data(iverticies);
+//  irenderer.modify_data(iverticies);
+//  irenderer.draw_data();
+//  irenderer.destroy_resources();
 }

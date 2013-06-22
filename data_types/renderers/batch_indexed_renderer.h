@@ -18,9 +18,53 @@ namespace glext
   class batch_indexed_renderer
   {
   private:
-    GLsizeiptr vertex_count_;
-    GLsizeiptr byte_count_;
-    GLuint vbo_id_;
+    /*! \brief The amount of verticies in the VBO
+     */
+    GLsizeiptr _vertex_count;
+
+    /*! \brief The amount of bytes in the VBO
+     */
+    GLsizeiptr _byte_count;
+
+    /*! \brief The amount of bytes in the VBO used by the first type
+     */
+    GLsizeiptr _byte_count1;
+
+    /*! \brief The amount of bytes in the VBO used by the second type
+     */
+    GLsizeiptr _byte_count2;
+
+    /*! \brief The amount of bytes in the VBO used by the third type
+     */
+    GLsizeiptr _byte_count3;
+
+    /*! \brief The amount of bytes in the VBO used by the fourth type
+     */
+    GLsizeiptr _byte_count4;
+
+    /*! \brief The amount of indices in the index VBO
+     */
+    GLsizeiptr _index_count;
+
+    /*! \brief The amount of bytyes in the index VBO
+     */
+    GLsizeiptr _index_byte_count;
+
+    /*! \brief The id associated with the vbo
+     */
+    GLuint _vbo_id;
+
+    /*! \brief The id associated with the index vbo
+     */
+    GLuint _index_id;
+
+    /*! \brief Do not allow users to copy OpenGL resources around
+     */
+    batch_indexed_renderer(const batch_indexed_renderer &rhs);
+
+    /*! \brief Do not allow users to copy OpenGL resources around
+     */
+    batch_indexed_renderer &operator=(const batch_indexed_renderer &rhs);
 
   public:
     /*! \brief Basic Constructor
@@ -40,6 +84,11 @@ namespace glext
      */
     bool bind();
 
+    /*! \brief Make sure the ID associated with the index VBO is bound before
+     * use
+     */
+    bool index_bind();
+
     /*! \brief Set the current ID to 0 to keep unbind all buffers
      */
     void unbind();
@@ -58,13 +107,14 @@ namespace glext
     /*! \brief This allows the user to modify a subset of the data based on the
      * data passed in
      */
-    bool modify_data(render_data_type &data, GLsizeiptr start_index);
+    bool modify_data(render_data_type &data, data_set set,
+      GLsizeiptr start = 0);
 
     /*! \brief This allows the user to modify a subset of the indices based on
      * the data passed in
      */
     bool modify_indices(std::vector<index_primitive_type> &indices,
-      GLsizeiptr start_index = 0);
+      GLsizeiptr start = 0);
   };
 }
 

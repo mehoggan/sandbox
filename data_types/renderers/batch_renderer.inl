@@ -126,22 +126,22 @@ namespace glext
     glGenBuffers(buffer_count, &_vbo_id);
     if (bind()) {
       glBufferData(render_target, _byte_count, NULL, render_usage);
-      switch (_data._type_count) {
+      switch (data._type_count) {
       case (4): {
-        glBufferSubData(render_target, _data.t4_offset(), _data.data4_size_of(),
-          _data._data_4.data());
+        glBufferSubData(render_target, data.t4_offset(), data.data4_size_of(),
+          data._data_4.data());
       }
       case (3): {
-        glBufferSubData(render_target, _data.t3_offset(), _data.data3_size_of(),
-          _data._data_3.data());
+        glBufferSubData(render_target, data.t3_offset(), data.data3_size_of(),
+          data._data_3.data());
       }
       case (2): {
-        glBufferSubData(render_target, _data.t2_offset(), _data.data2_size_of(),
-          _data._data_2.data());
+        glBufferSubData(render_target, data.t2_offset(), data.data2_size_of(),
+          data._data_2.data());
       }
       case (1): {
-        glBufferSubData(render_target, _data.t1_offset(), _data.data1_size_of(),
-          _data._data_1.data());
+        glBufferSubData(render_target, data.t1_offset(), data.data1_size_of(),
+          data._data_1.data());
       }
         break;
       default: {

@@ -15,7 +15,6 @@ namespace glext
   class interleaved_renderer
   {
   private:
-    render_data_type _data;
     GLsizeiptr _vertex_count;
     GLsizeiptr _byte_count;
     GLuint _vbo_id;
