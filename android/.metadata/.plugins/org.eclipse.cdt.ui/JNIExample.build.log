@@ -1,7 +1,0 @@
-
-**** Build of configuration Default for project JNIExample ****
-
-ndk-build all 
-Install        : libjniexample.so => libs/armeabi/libjniexample.so
-
-**** Build Finished ****
