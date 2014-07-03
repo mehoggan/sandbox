@@ -1,0 +1,70 @@
+/* ~~~~~~~~~ layout ~~~~~~~~~~ */
+
+#container 
+{
+	font-style: normal;
+	font-family: 'Comic Sans MS';
+}
+
+/* ~~~~~~~~~ general ~~~~~~~~~~ */
+
+/* ~~~~~~~~~ sidebar ~~~~~~~~~~ */
+#side-bar
+{
+	position: absolute;
+	top: 50px;
+	left: 2px;
+	z-index: 2;
+	height: 20px;
+	width: 300px;
+}
+
+#seach-bar
+{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	padding: 5px;
+	border-width: 5px;
+	border-color: #666666;
+	border-style: ridge;
+	top: 160px;
+}
+
+#search
+{
+	position: absolute;
+	width: 60%;
+	left: 110px;
+}
+
+#login-bar
+{
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	padding: 5px;
+	border-width: 5px;
+	border-color: #666666;
+	border-style: ridge;
+	top: 0px;
+}
+
+#uname
+{
+	position: absolute;
+	width: 60%;
+	left: 110px;
+	top: 5px;
+}
+
+#passwd
+{
+	position: absolute;
+	width: 60%;
+	left: 110px;
+	top: 40px;
+}
+
+
+

@@ -1,0 +1,25 @@
+/*************************************************************\
+* generic.rc: Resource script for Generic                     *
+*                                                             *
+*                                                             *
+\*************************************************************/
+
+#include <windows.h>
+#include "generic.h"
+
+GenericAppMenu MENU
+{
+	POPUP "&File"
+	{
+		MENUITEM "&New",		IDM_NEW
+		MENUITEM "&Open",		IDM_OPEN
+		MENUITEM "&Print",	IDM_PRINT
+	}
+	POPUP "&Edit"
+	{
+		MENUITEM "&Undo"		IDM_UNDO
+		MENUITEM "&Redo"		IDM_REDO
+		MENUITEM "&Copy"		IDM_COPY
+		MENUITEM "&Paste"		IDM_PASTE
+	}
+}

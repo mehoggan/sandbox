@@ -1,0 +1,42 @@
+'''
+Created on Nov 28, 2009
+
+@author: Matthew
+'''
+import sys
+
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+def main(argv = sys.argv):
+    app = QApplication(argv)
+    
+    Pong = QGraphicsView()
+    Pong.setGeometry(600, 400, 0, 0)
+    Pong.setMinimumSize(QSize(400, 350))
+    Pong.setMaximumSize(QSize(400, 350))
+    Pong.setHorizontalScrollBarPolicy(1)
+    
+    Container = QGraphicsScene()
+    Pong.setScene(Container)
+    
+    brush = QBrush(QColor("#000000"))
+    pen = QPen(QColor("#000000"))
+    ellipse = QGraphicsEllipseItem(0, 0, 10, 10)
+    ellipse.setPen(pen)
+    ellipse.setBrush(brush)
+    square1 = QGraphicsRectItem((-1 * (Pong.width()/2)), -50, 10, 100)
+    square1.setPen(pen)
+    square1.setBrush(brush)
+    square2 = QGraphicsRectItem(((Pong.width()/2) - 10), -50, 10, 100)
+    square2.setPen(pen)
+    square2.setBrush(brush)
+    
+    Container.addItem(ellipse)
+    Container.addItem(square1)
+    Container.addItem(square2)
+    Pong.show()
+    return app.exec_()
+
+if __name__ == "__main__":
+    sys.exit(main())

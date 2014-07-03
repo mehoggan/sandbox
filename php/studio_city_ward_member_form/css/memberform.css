@@ -1,0 +1,236 @@
+div input
+{
+	border-style: grove;
+	position: relative;
+	float: left;
+	width: 150px;
+}
+
+div label
+{
+	position: relative;
+}
+
+div select
+{
+	position: relative;
+}
+
+#lfname
+{
+	margin-left: 0px;	
+}
+
+#ifname
+{
+	margin-left: 0px;
+}
+
+#iminitial
+{
+	margin-left: 10px;
+	width: 50px;
+}
+
+#lminitial
+{
+	margin-left: 80px;	
+}
+
+
+#llname
+{
+	margin-left:2px;	
+}
+
+#ilname
+{
+	margin-left: 10px;
+}
+
+#lmemnum
+{
+	margin-left: 0px;
+}
+
+#imemnum
+{
+	width: 210px;
+	margin-left: 0px;
+}
+
+#memnumber
+{
+	font-size: xx-small;
+	position: relative;
+	z-index: 10;
+	width: 200px;
+}
+
+#lmemnumber
+{
+	position: relative;
+}
+
+#laddrs
+{
+	margin-left: 0px;	
+}
+
+#iaddrs
+{
+	width: 210px;
+}
+
+#lsttype
+{
+	margin-left: 160px;
+}
+
+#ssttype
+{
+	width: 55px;
+	margin-left: 10px;
+	float: left;
+}
+
+#laptnum
+{
+	margin-left: 2px;
+}
+
+#iaptnum
+{
+	width: 50px;
+	margin-left: 10px;
+}
+
+#adrsinstr
+{
+	position relative;
+	z-index: 10;
+	height: 20px;
+	width: 300px;
+	font-size: xx-small;
+}
+
+#ladrsinstr
+{
+	float: left;
+	position: relative;
+	margin-left: 0px;
+}
+
+#ldob
+{
+	margin-left: 0px;
+}
+
+#smdob
+{
+	margin-left: 0px;
+	width: 85px;
+	float: left;
+}
+
+#sddob
+{
+	margin-left: 0px;
+	width: 50px;
+	float: left;
+}
+
+#sydob
+{
+	margin-left: 0px;
+	width: 80px;
+	float: left;
+}
+
+#lsex
+{
+	margin-left: 190px;
+}
+
+#ssex
+{
+	margin-left: 75px;
+	width: 60px;
+	float: left;
+}
+
+#lmonth
+{
+	float: left;
+	position: relative;
+	margin-left: 0px;
+}
+
+#lday
+{
+	float: left;
+	position: relative;
+	margin-left: 60px;
+}
+
+#lyear
+{
+	float: left;
+	position: relative;
+	margin-left: 35px;
+}
+
+#yearlabels
+{
+	position relative;
+	z-index: 10;
+	height: 20px;
+	width: 200px;
+	font-size: xx-small;
+}
+
+#button
+{
+	width: 100px;
+	margin-left: 250px;
+}
+
+#wrapper
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#main
+{
+	background-color:#cccccc;
+	border: 3px;
+	border-style: solid;
+	border-color: #000000;
+	padding: 10px;
+	position: relative;
+	width: 390px;
+	height: 320px;
+}
+
+#title
+{
+	background-color:#000000;
+	border: 3px;
+	border-style: solid;
+	border-color: #000000;
+	padding: 10px;
+	position: relative;
+	width: 390px;
+	left: 0px;
+	text-align: center;
+	color: #ffffff;
+	font-size: xx-large;
+	text-weight: bold;
+}
+
+<!--ABOVE IS CSS FOR MEMBERSHIP FORM ELEMENTS-->
+
+
+

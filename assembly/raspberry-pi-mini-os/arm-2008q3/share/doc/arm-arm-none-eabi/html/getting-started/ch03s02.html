@@ -1,0 +1,193 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Using Sourcery G++ Lite for ARM EABI</title><link rel="stylesheet" href="cs.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="index.html" title="Sourcery G++ Lite"><link rel="up" href="chap-release.html" title="Chapter 3. Sourcery G++ Lite for ARM EABI"><link rel="prev" href="chap-release.html" title="Chapter 3. Sourcery G++ Lite for ARM EABI"><link rel="next" href="ch03s03.html" title="Using Flash Memory"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Using Sourcery G++ Lite for ARM EABI</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="chap-release.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Sourcery G++ Lite for ARM EABI</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="id297608"></a>Using Sourcery G++ Lite for ARM EABI</h2></div></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id297614"></a>ARMv7M Interrupt handlers</h3></div></div></div><p>
+      Because of a discrepancy between the ARMv7M Architecture and
+      the ARM EABI, it is not safe to use normal C functions directly as
+      interrupt handlers.  The EABI requires the stack be 8-byte aligned,
+      whereas ARMv7M only guarantees 4-byte alignment when calling an interrupt
+      vector. This can cause subtle runtime failures, usually when 8-byte
+      types are used.
+    </p><p>
+      Functions that are used directly as interrupt handlers should be
+      annotated with <code class="code">__attribute__((__interrupt__))</code>.  
+      This tells the compiler to
+      add special stack alignment code to the function prologue.  
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id297636"></a>ARM Interrupt Vectors</h3></div></div></div><p>
+      The ARM CS3 implementation treats all systems as address vector
+      processors.  On traditional ARM systems (everything except M profile
+      devices) an exception causes the processor to jump to a fixed
+      address.  However the arrangement of these addresses is such
+      that the CS3 code vector model is not feasible.
+    </p><p>
+      The default CS3 vector table emulates an address vector system by
+      placing an indirect branch at the real exception vector.
+      If you override the entire vector table (rather than individual vectors)
+      the indirect stubs are not included, and your replacement table is
+      placed at address zero.
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id297655"></a>NEON SIMD Code</h3></div></div></div><p>
+    Sourcery G++ includes support for automatic generation of NEON
+    SIMD vector code.  Autovectorization is a compiler optimization
+    in which loops involving normal integer or floating-point code are 
+    transformed to use NEON SIMD instructions to process several data
+    elements at once.
+  </p><p>
+    To enable generation of NEON vector code, use the command-line options
+    <code class="option">-ftree-vectorize -mfpu=neon -mfloat-abi=softfp</code>.
+    The <code class="option">-mfpu=neon</code> option 
+    also enables generation of VFPv3 scalar floating-point code.
+  </p><p>
+    Sourcery G++ also includes support for manual generation
+    of NEON SIMD code using C intrinsic functions.  These intrinsics,
+    the same as those supported by the ARM 
+    <span class="trademark">RealView</span>® compiler, are defined
+    in the <code class="filename">arm_neon.h</code> header
+    and are documented in the 'ARM NEON Intrinsics' section of the GCC
+    manual.  The command-line options <code class="option">-mfpu=neon
+    -mfloat-abi=softfp</code> must be specified to use these
+    intrinsics; <code class="option">-ftree-vectorize</code> is not required.
+  </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="sec-arm-fp16"></a>Half-Precision Floating Point</h3></div></div></div><p>
+    Sourcery G++ for ARM EABI includes support for half-precision 
+   (16-bit) floating point, including the new <span class="type">__fp16</span> data 
+   type in C and C++, support for generating conversion instructions when
+   compiling for processors that support them, and library functions for
+   use in other cases.  
+   
+  </p><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id297726"></a>Representations</h4></div></div></div><p>
+      ARM supports two incompatible representations for half-precision
+      floating-point values.  You must choose one of the representations
+      and use it consistently in your program.  The linker gives an error
+      if objects compiled or assembled with different half-precision 
+      float attributes are combined in the same executable.
+    </p><p>
+      Compiling or assembling with <code class="option">-mfp16-format=ieee</code>
+      selects the representation defined in the
+      <em class="citetitle">IEEE 754-2008</em> standard, 
+      with 1 sign bit, 5 exponent bits, and 10 significand bits 
+      (11 bits of significand precision, approximately 3 decimal digits).  
+      This format is capable of representing normalized values in the range of 
+      2<sup>-14</sup> to 65504.  It includes support for
+      infinities and NaNs, following the usual IEEE 754 rules.
+    </p><p>
+      ARM also supports an alternative half-precision representation,
+      which you can select with
+      <code class="option">-mfp16-format=alternative</code>.  This format does not
+      include support for infinities and NaNs.  Instead, the range of
+      exponent values is extended, so that this format can represent 
+      normalized values in the range of 2<sup>-14</sup>
+      to 131008.
+    </p><p>
+      The default for this option is <code class="option">-mfp16-format=none</code>,
+      which disables support for half-precision floats.
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id297777"></a>C and C++ Usage</h4></div></div></div><p>
+      When you compile with <code class="option">-mfp16-format=ieee</code> or
+      <code class="option">-mfp16-format=alternative</code>, GCC defines the
+      <span class="type">__fp16</span> data type to represent half-precision
+      float values.  Objects of this type have a size of 2 bytes and
+      a natural alignment of 2 bytes.
+    </p><p>
+      The <span class="type">__fp16</span> type is a storage format only.  For purposes
+      of arithmetic and other operations, <span class="type">__fp16</span> values
+      are automatically promoted to <span class="type">float</span>.  In addition,
+      you cannot declare a function with a return value or parameters 
+      of type <span class="type">__fp16</span>.
+    </p><p>
+      Note that conversions from <span class="type">double</span> to <span class="type">__fp16</span>
+      involve an intermediate conversion to <span class="type">float</span>.  Because
+      of rounding, this can sometimes produce a different result than a
+      direct conversion.
+    </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="id297836"></a>Hardware and Library Support</h4></div></div></div><p>
+      ARM provides hardware support for conversions between 
+      <span class="type">__fp16</span> and <span class="type">float</span> values
+      as an extension to VFP and NEON (Advanced SIMD).  GCC generates
+      code using the instructions provided by this extension if you compile
+      with the options <code class="option">-mfpu=neon-fp16 -mfloat-abi=softfp</code>,
+      in addition to the <code class="option">-mfp16-format</code> option to select
+      a half-precision format.
+    </p><p>
+      In other cases, conversions between 
+      <span class="type">__fp16</span> and <span class="type">float</span> values are implemented
+      as library calls.
+    </p></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="id297876"></a>ABI Compatibility</h3></div></div></div><p>
+    The Application Binary Interface (ABI) for the ARM Architecture is
+    a collection of standards, published by ARM Ltd. and other
+    organizations.  The ABI makes it possible to combine tools
+    from different vendors, including Sourcery G++ and ARM
+    <span class="trademark">RealView</span>®.
+  </p><p>
+    Sourcery G++ implements the ABI as described in these documents,
+    which are available from the <a href="http://infocenter.arm.com" target="_top">
+    ARM Information Center</a>:
+  </p><div class="itemizedlist"><ul type="disc"><li>BSABI - ARM IHI 0036A (25 October 2007)</li><li>BPABI - ARM IHI 0037A (25 October 2007)</li><li>EHABI - ARM IHI 0038A (25 October 2007)</li><li>CLIBABI - ARM IHI 0039A (25 October 2007)</li><li>AADWARF - ARM IHI 0040A (25 October 2007)</li><li>CPPABI - ARM IHI 0041A (25 October 2007)</li><li>AAPCS - ARM IHI 0042B (2 April 2008)</li><li>RTABI - ARM IHI 0043A (25 October 2007)</li><li>AAELF - ARM IHI 0044B (2 April 2008)</li><li>ABI Addenda - ARM IHI 0045A (13 November 2007)</li></ul></div><p>
+    Sourcery G++ currently produces DWARF version 2, rather than DWARF
+    version 3 as specified in AADWARF.
+  </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="portable-objects"></a>Object File Portability</h3></div></div></div><p>
+    It is possible to create object files using Sourcery G++ for
+    ARM EABI that are link-compatible with the
+    GNU C library provided with Sourcery G++ for ARM
+    GNU/Linux as well as with the Newlib C library provided with the
+    ARM EABI toolchain.
+    <span>
+      These object files are additionally link-compatible with
+      other ARM C Library ABI-compliant static linking environments
+      and toolchains.
+    </span>
+    
+  </p><p>
+    To use this feature, when compiling your files with the bare-metal 
+    ARM EABI toolchain define the preprocessor constant 
+    <code class="constant">_AEABI_PORTABILITY_LEVEL</code> to 1 
+    before including any system header files.
+    For example, pass the option <code class="option">-D_AEABI_PORTABILITY_LEVEL=1</code> 
+    on your compilation command line.  
+    No special options are required when linking the resulting object files.
+    When building applications for ARM EABI,
+    files compiled with this definition may be linked freely with those
+    compiled without it.
+  </p><p>
+    Files compiled in this manner may not use the
+    functions <code class="function">fgetpos</code>
+    or <code class="function">fsetpos</code>, or reference the
+    type <span class="type">fpos_t</span>.  This is because Newlib assumes a
+    representation for <span class="type">fpos_t</span> that is not AEABI-compliant.
+  </p><p>
+    Note that object files are only portable from EABI to GNU/Linux, and
+    not vice versa; object files compiled for ARM 
+    GNU/Linux targets cannot be linked into ARM EABI
+    executables.
+  </p></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="arm-mcount"></a>ARM Profiling Implementation</h3></div></div></div><p>
+      Profiling is enabled by means of the <code class="option">-pg</code>
+      compiler option. In this mode, the compiler inserts a call to
+      <code class="function">__gnu_mcount_nc</code> into every function prologue.
+      However, no implementation of <code class="function">__gnu_mcount_nc</code>
+      is provided (to do so would be impossible without knowledge of
+      the execution environment).
+    </p><p>
+      You must provide your own implementation of
+      <code class="function">__gnu_mcount_nc </code>. Here are the requirements:
+      </p><div class="itemizedlist"><ul type="disc"><li>
+	  On exit, pop the top value from the stack, and place it in the
+	  <code class="code">lr</code> register. The <code class="code">sp</code> register should
+	  be adjusted accordingly. For example, this is how to write it
+	  as a stub function:
+	  <div class="informalexample"><pre class="programlisting">        .globl __gnu_mcount_nc
+        .type __gnu_mcount_nc, %function
+__gnu_mcount_nc:
+        mov    ip, lr
+        pop    { lr }
+        bx     ip</pre></div></li><li>
+	  Preserve all other register state except for <code class="code">r12</code>
+	  and the CPSR condition code bits.  In particular all coprocessor
+	  state and registers <code class="code">r0</code>-<code class="code">r3</code> must
+	  be preserved.
+	</li><li>
+	  Record and count all occurrences of the function calls
+	  in the program.  The caller can be determined from the
+	  <code class="code">lr</code> value stored on the top of the stack (on entry
+	  to <code class="function">__gnu_mcount_nc</code>), and the callee can
+	  be determined from the current value of the <code class="code">lr</code>
+	  register (i.e. the caller of this function).
+	</li><li>
+	  Arrange for the data to be saved to a file named
+	  <code class="filename">gmon.out</code> when the program exits
+	  (via <code class="function">atexit</code>).  Refer to the
+	  <span><strong class="command">gprof</strong></span> profiler manual for more information.
+	</li></ul></div><p>
+    </p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="chap-release.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="chap-release.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. Sourcery G++ Lite for ARM EABI </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Using Flash Memory</td></tr></table></div></body></html>

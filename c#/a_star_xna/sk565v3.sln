@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sk565v3", "sk565v3\sk565v3.csproj", "{77963243-19CC-46A2-AD74-A0C8639ECE39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9111C9F-696C-49D1-9439-CAE526D4D825}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77963243-19CC-46A2-AD74-A0C8639ECE39}.Debug|x86.ActiveCfg = Debug|x86
+		{77963243-19CC-46A2-AD74-A0C8639ECE39}.Debug|x86.Build.0 = Debug|x86
+		{77963243-19CC-46A2-AD74-A0C8639ECE39}.Release|x86.ActiveCfg = Release|x86
+		{77963243-19CC-46A2-AD74-A0C8639ECE39}.Release|x86.Build.0 = Release|x86
+		{C0BA018D-3F9C-4A21-85B3-5ADD341041C7}.Debug|x86.ActiveCfg = Debug|x86
+		{C0BA018D-3F9C-4A21-85B3-5ADD341041C7}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
