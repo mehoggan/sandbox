@@ -7,32 +7,44 @@ static int base_per = 0x7E000000;
 static int base_phy = 0x20000000;
 
 unsigned int phy_to_per(unsigned int addr) {
-  unsigned int diff = addr - base_phy;
+  unsigned int diff;
+
+  diff = addr - base_phy;
   return base_per + diff;
 }
 
 unsigned int per_to_phy(unsigned int addr) {
-  unsigned int diff = addr - base_per;
+  unsigned int diff;
+
+  diff = addr - base_per;
   return base_phy + diff;
 }
 
 unsigned int phy_to_virt(unsigned int addr) {
-  unsigned int diff = addr - base_phy;
+  unsigned int diff;
+
+  diff = addr - base_phy;
   return base_vir + diff;
 }
 
 unsigned int virt_to_phy(unsigned int addr) {
-  unsigned int diff = addr - base_vir;
+  unsigned int diff;
+
+  diff = addr - base_vir;
   return base_phy + diff;
 }
 
 unsigned int per_to_virt(unsigned int addr) {
-  unsigned int diff = addr - base_per;
+  unsigned int diff;
+
+  diff = addr - base_per;
   return base_vir + diff;
 }
 
 unsigned int virt_to_per(unsigned int addr) {
-  unsigned int diff = addr - base_vir;
+  unsigned int diff;
+
+  diff = addr - base_vir;
   return base_per + diff;
 }
 
@@ -113,6 +125,12 @@ int main(int argc, char *argv[]) {
       printf("Invalid address %s\n", argv[2]);
       status_code = -1;
     }
+  } else if(argc == 2 &&
+    (strcmp("--help", argv[1]) == 0 || strcmp("-h", argv[1]) == 0)) {
+
+    printf("The options are: [%s | %s | %s | %s | %s | %s] addr\n",
+      "-phy_per", "-per_phy", "-phy_virt", "-virt_phy", "-virt_per",
+      "-per_virt");
   } else {
     printf("Invalid number of args %d\n", argc);
     status_code = -1;
