@@ -49,9 +49,9 @@ unsigned int virt_to_per(unsigned int addr) {
 }
 
 unsigned int strtohex(const char* hex_str) {
+  int i;
   unsigned int val;
   unsigned int len;
-  unsigned int i;
   unsigned int pow16;
   unsigned int pow;
 
@@ -59,7 +59,7 @@ unsigned int strtohex(const char* hex_str) {
   len = strlen(hex_str);
   pow16 = 0;
 
-  for (i = len - 1; i > 0; --i, ++pow16) {
+  for (i = len - 1; i >= 0; --i, ++pow16) {
     const char tok = hex_str[i];
 
     pow = 1u << (pow16 * 4);
