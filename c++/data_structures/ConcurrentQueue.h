@@ -17,7 +17,7 @@ class ConcurrentQueue
 {
 
 public:
-	int Size()
+	std::size_t Size()
 	{
 		boost::lock_guard<boost::mutex> lock(m_Mutex);
 		return m_Queue.size();
