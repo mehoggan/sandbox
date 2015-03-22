@@ -1,2 +1,7 @@
 *.swp
 a.out
+*.o
+*.config
+*.creator
+*.files
+*.includes
