@@ -19,13 +19,13 @@ bool pathCount(int (&matrix)[ROW][COL], int M, int N, int m, int n, int &paths)
   std::cout << "@ (" << m << ", " << n << ")" << std::endl;
   if (m == M - 1 && n == N - 1 && matrix[m][n]) {
       ++paths;
-      return false;
+      return;
   } else if (m == M || n == N || !matrix[m][n]) {
-      return false;
+      return;
   }
 
-  while (pathCount(matrix, N, M, m, n + 1, paths));
-  while (pathCount(matrix, N, M, m + 1, n, paths));
+  pathCount(matrix, N, M, m, n + 1, paths);
+  pathCount(matrix, N, M, m + 1, n, paths);
 
   return false;
 }
