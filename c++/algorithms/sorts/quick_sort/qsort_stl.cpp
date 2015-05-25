@@ -3,6 +3,15 @@
 #include <iterator>
 #include <vector>
 
+/*! quick_sort
+ *  \brief Works on RandomAccess iterators. Sorts by using the left most
+ *  element as the pivot.
+ *
+ *  \param begin[in]: RandomAccess iterator to front() elemnt
+ *  \param end[in]: RandomAccess iterator to back() + 1 element
+ *
+ *  \expeceted: A sorted container between elements in the range of [begin, end)
+ */
 template <typename Iterator>
 void quick_sort(Iterator begin, Iterator end)
 {
@@ -37,6 +46,9 @@ void quick_sort(Iterator begin, Iterator end)
   quick_sort(it_rhs, end);
 }
 
+
+/*! Driver
+ */
 int main(int argc, char *argv[])
 {
   std::vector<int> two_a = {1, 2};
