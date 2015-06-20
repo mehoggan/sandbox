@@ -5,3 +5,4 @@ a.out
 *.creator
 *.files
 *.includes
+*.S
