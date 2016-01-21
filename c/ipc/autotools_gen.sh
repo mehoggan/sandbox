@@ -1,4 +1,4 @@
 #!/bin/bash
 
-aclocal && autoconf && autoreconf --no-recursive --install && \
-    autoheader && libtoolize && automake --add-missing
+autoconf && autoreconf --no-recursive --install && \
+    autoheader && libtoolize && aclocal && automake --add-missing

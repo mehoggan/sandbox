@@ -9,7 +9,6 @@
 #include <sys/types.h>
 #endif
 
-#define NO_SUCCESS(x) (x) == -1
 #define IS_CHILD_PID(x) (x) == 0
 
 typedef struct {
@@ -17,48 +16,54 @@ typedef struct {
     pid_t childpid;
 } IPC_descriptor;
 
-void print_error_and_exit()
-{
-    int errnum;
-
-    errnum = errno;
-    char *err_str = strerror(errnum);
-    perror(err_str);
+#define print_error_and_exit() \
+    int errnum; \
+    errnum = errno; \
+    char *err_str = strerror(errnum); \
+    perror(err_str); \
     _exit(-1);
-}
+
+#define print_error_and_exit1(x) \
+    int errnum; \
+    errnum = errno; \
+    char *err_str = strerror(errnum); \
+    perror(err_str); \
+    _exit(x);
 
 int main(int argc, char *argv[])
 {
     IPC_descriptor ipc_des;
+    int ret;
 
-    if (NO_SUCCESS(pipe(&ipc_des.fd[0]))) {
-        print_error_and_exit();
+    if ((ret = pipe(&ipc_des.fd[0]) == -1)) {
+        print_error_and_exit1(ret);
     }
 
-    if (NO_SUCCESS(ipc_des.childpid = fork())) {
+    if ((ipc_des.childpid = fork()) == -1) {
         print_error_and_exit();
     }
 
     if (IS_CHILD_PID(ipc_des.childpid)) {
-        if (NO_SUCCESS(close(ipc_des.fd[0]))) {
-            print_error_and_exit();
-        }
-
-        if (NO_SUCCESS(close(STDIN_FILENO))) {
-            print_error_and_exit();
-        }
-        // Often the descriptors of the childe are duplicated onto standard
+        // Often the descriptors of the child are duplicated onto standard
         // input and output. The child can then exec() another program, which
         // inherits the standard streams.
-        if (NO_SUCCESS(dup(ipc_des.fd[0]))) {
+        if ((ret = dup(ipc_des.fd[0])) == -1) {
+            print_error_and_exit1(ret);
+        }
+
+        if ((ret = close(ipc_des.fd[0])) == -1) {
+            print_error_and_exit1(ret);
+        }
+
+        if ((close(STDIN_FILENO))) {
             print_error_and_exit();
         }
     } else {
-        if (NO_SUCCESS(close(ipc_des.fd[0]))) {
+        if ((close(ipc_des.fd[1]))) {
             print_error_and_exit();
         }
     }
 
-    // All parts of the program now must _exit(-1) if something goes wrong.
+    // All parts of the program now must _exit(x) if something goes wrong.
     return 0;
 }
