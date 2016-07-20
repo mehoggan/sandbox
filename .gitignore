@@ -6,3 +6,15 @@ a.out
 *.files
 *.includes
 *.S
+Makefile
+*.pyc
+*.Plo
+*.so*
+*.la
+*.lo
+**/.deps/*
+**/.libs/*
+*.in
+*.trs
+*.log
+
