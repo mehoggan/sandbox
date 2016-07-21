@@ -16,7 +16,7 @@ typedef struct rb_tree_node {
 } rb_tree_node;
 
 typedef struct rb_tree {
-  rb_tree_node *root;
+  rb_tree_node *root_;
 } rb_tree;
 
 /**

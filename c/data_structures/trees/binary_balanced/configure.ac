@@ -17,6 +17,8 @@ LT_INIT
 AC_PROG_CC
 
 # Checks for libraries.
+AX_VALGRIND_DFLT()
+AX_VALGRIND_CHECK
 
 # Checks for header files.
 

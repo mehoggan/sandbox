@@ -16,6 +16,8 @@ check_binary_balanced_LDADD = \
 check_binary_balanced_LDFLAGS = \
   -pthread
 
+@VALGRIND_CHECK_RULES@
+
 CLEANFILES = *.o
 CLEANDIRS = deps/ \
 	.lib/

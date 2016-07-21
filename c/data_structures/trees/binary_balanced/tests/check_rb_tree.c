@@ -10,10 +10,17 @@
 
 #include "../src/rb_tree.h"
 
-START_TEST(check_create)
+START_TEST(check_rb_tree_create)
 {
   rb_tree *tree = rb_tree_create();
   ck_assert(tree);
+  ck_assert(!tree->root_);
+}
+END_TEST
+
+START_TEST(check_rb_tree_destroy)
+{
+  rb_tree *tree = rb_tree_create();
 }
 END_TEST
 
@@ -25,7 +32,8 @@ Suite *binary_balanced_suite(void)
   s = suite_create("Image Processing");
   tc_core = tcase_create("Core");
 
-  tcase_add_test(tc_core, check_create);
+  tcase_add_test(tc_core, check_rb_tree_create);
+  tcase_add_test(tc_core, check_rb_tree_destroy);
 
   suite_add_tcase(s, tc_core);
 
